@@ -2,7 +2,7 @@
 EDA CIRCULAR doubly linked list 
 
 RECORDAD cambiar el BRANCH de master al VUESTRO
-Haced un fetch(coger de internet) cada vez que vayais a trabajar para tener lo ultimo si alguien a subido algo aunque deberian de estar en diferentes ramas
+Haced un fetch para actualizar y PULL (para coger de internet) cada vez que vayais a trabajar para tener lo ultimo si alguien a subido algo aunque deberian de estar en diferentes ramas
 
 1-Descargar el programa github desktop https://central.github.com/deployments/desktop/desktop/latest/win32
 2-Instalar e iniciar sesión en el programa
@@ -10,7 +10,7 @@ Haced un fetch(coger de internet) cada vez que vayais a trabajar para tener lo u
 
 0-cuando ya tengais el repositorio y estemos trabajando
 
-0.1-FETCH antes de todo (coger de internet los ultimos cambios)
+0.1-FETCH y PULL antes de todo (coger de internet los ultimos cambios)
 
       Este programa trabaja en el ordenador no online directamente por eso hay que hacer fetch al principio y push al final.
       
