@@ -62,7 +62,26 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public T remove(T elem) {
 	//Elimina un elemento concreto de la lista
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE: 0(n)
+		boolean enc = false;
+		Node<T> aux = this.first;
+		if (this.count == 1 && aux.data.equals(elem)){
+			this.first = null;
+			this.count = this.count - 1;
+			
+		}else{
+			while (!enc && !aux.equals(this.first.prev)){
+				if (aux.data.equals(elem)){
+					enc = true;
+					aux.next.prev = aux.prev;
+					aux.prev.next = aux.next;
+				}else{
+					aux = aux.next;
+				}
+			}
+		}
+		
+		return aux.data;
 	}
 
 	public T first() {
