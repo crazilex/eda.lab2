@@ -80,8 +80,16 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				}
 			}
 		}
+		if (aux.data.equals(elem) && !enc){
+			aux.next.prev = aux.prev;
+			aux.prev.next = aux.next;
+			enc = true;
+		}
+		if (enc){
+			return aux.data;
+		}
 		
-		return aux.data;
+		return null;
 	}
 
 	public T first() {
@@ -100,11 +108,26 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public boolean contains(T elem) {
 	//Determina si la lista contiene un elemento concreto
-		      if (isEmpty())
-		          return false;
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-		      
-		   }
+		boolean enc = false;
+		Node<T> aux = this.first;
+		if (isEmpty())
+			return false;
+		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE: O(n)
+		else{
+			while (!enc && !aux.equals(this.first.prev)){
+				if (aux.data.equals(elem)){
+					enc = true;
+				}else{
+					aux = aux.next;
+				}
+			}
+		}
+		if (aux.data.equals(elem) && !enc){
+			enc = true;
+		}
+		
+		return enc;
+	}
 
 	public T find(T elem) {
 	//Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no est�
