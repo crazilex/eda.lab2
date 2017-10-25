@@ -122,9 +122,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				}
 			}
 		}
-		if (aux.data.equals(elem) && !enc){
-			enc = true;
-		}
+		if (aux.data.equals(elem) && !enc) enc = true;
 		
 		return enc;
 	}
@@ -132,7 +130,24 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public T find(T elem) {
 	//Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no est�
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-
+		boolean enc = false;
+		Node<T> aux = this.first;
+		if (isEmpty())
+			return null;
+		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE: O(n)
+		else{
+			while (!enc && !aux.equals(this.first.prev)){
+				if (aux.data.equals(elem)){
+					enc = true;
+				}else{
+					aux = aux.next;
+				}
+			}
+		}
+		if (aux.data.equals(elem) && !enc) enc = true;
+		
+		if(enc) return aux.data;
+		else return null;
 	}
 
 	public boolean isEmpty() 
