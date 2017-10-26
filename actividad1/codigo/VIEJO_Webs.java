@@ -135,8 +135,7 @@ public class Webs {
 		}
 	}
 
-	protected Nodo sustitucion (Nodo pNodo)
-	{
+	protected Nodo sustitucion (Nodo pNodo){
 
 		//pre: -
 		//post: devuelve la referencia a sustituir de pNodo, si tiene hijos (es decir, si es un subarbol) devuelve el subarbol de manera InOrder

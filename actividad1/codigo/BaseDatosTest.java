@@ -1,4 +1,4 @@
-package Lab1;
+package eda;
 
 import static org.junit.Assert.*;
 
