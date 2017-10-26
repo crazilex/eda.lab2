@@ -4,69 +4,69 @@ import eda.StopWatch;
 import java.io.*;
 import java.util.*;
 
-	
+
 public class MainMenu {
-	
-	
+
+
 	//Esto es lo que se ejecutara mientras este encendido
 	public static void main(String[] args) throws FileNotFoundException {
-		
-		// "Empieza" el programa			
+
+		// "Empieza" el programa
 		MainMenu miMenu = MainMenu.getMenu();
 		try{
-			
+
 			miMenu.cargarDeFichero(true);
 
 
 			/*
 			  	//TEST de que funciona el arbol binario
 			 		Webs.websID.imprimirArbol(Webs.websID.getRaiz());
-			 		
+
 					System.out.println("+++++++++++++++++++++++++++++++++++++++++++\n");
 			 		Webs.getWebs().imprimirArbol(Webs.getWebs().raiz);
 			 		Webs.getWebs().encontrarWeb("redditcooty.com").printList();
-			 		
-			 		
+
+
 					for(int k=0; k<2;k++){
 						Webs.websID.encontrarWebPorID(k).printList();
 					}
 			*/
-			 
+
 			miMenu.imprimirMenu();
 			miMenu.seleccionarMenu();
-			
 
-			
+
+
 		}catch(FileNotFoundException nSe){
 			System.out.print("Agur no se ha encontrado los archivos de texto compruebe que ha introducido bien el nombre de los archivos\n");
 			//nSe.printStackTrace();
 			miMenu.imprimirMenu();
 			miMenu.seleccionarMenu();
-		}		
-		
+		}
+
 	}
-	
+
 	//Constructora
 		private MainMenu()
 		{
 		}
 	/******************************************************************************************************************************************/
-	
+
 	//Atributos del Menu principal (Alex)
-							
+
 	private Scanner scan;	//Necesario para leer comandos de la consola, se utiliza en leer y para cargar el fichero
 	private static MainMenu miMenu = null;
 
 	/*----------------------------------------------------------------------------------------------------------------------------------------*/
-	
+
 	//Metodos del menu principal (Alex)
-	public static MainMenu getMenu() { 
+	public static MainMenu getMenu() {
 		if(miMenu == null) {
 			miMenu = new MainMenu();
 		}
 		return miMenu;
-	}	
-	
+	}
+
 	public void imprimirMenu(){
 		System.out.print("Elija una opcion:\n");
 		String[] opciones = {"Buscar una pagina web",
@@ -76,13 +76,13 @@ public class MainMenu {
 							"Guardar la lista de webs en ficheros",
 							"Cargar datos desde un fichero (se añadira ordenado)",
 							"Salir"};
-							
+
 		for(int i=0; i<7; i++){
 			System.out.print(i+1);
 			System.out.println("- " + opciones[i]);
 		}
 	}
-	
+
 	public void seleccionarMenu() throws FileNotFoundException{
 		boolean salir = false;
 		while (!salir){
@@ -95,12 +95,12 @@ public class MainMenu {
 			String[] f = new String[] {"6","c","cargar","load","cargar datos","cargardatos"};
 			String[] g = new String[] {"7","q","salir","exit","quit","escape","leave"};
 
-			//MODIFICAR	
+			//MODIFICAR
 			if(miMenu.comparar(a, opcionElegida)){
 				miMenu.buscarPagWeb();
 			}
 			else if(miMenu.comparar(b, opcionElegida)){
-				miMenu.addElemento(); 
+				miMenu.addElemento();
 			}
 			else if(miMenu.comparar(c, opcionElegida)){
 				miMenu.obtenerWebs();
@@ -140,38 +140,38 @@ public class MainMenu {
 				pagina.printIdName();
 				System.out.print("   Las paginas referenciadas son: ");
 				System.out.println(Webs.getWebs().devolverWebsReferenciadas(pagina).toString());
-				
+
 			}catch(NullPointerException e){
 				System.out.println("No se ha encontrado la pagina que busca en concreto. Pruebe a buscar por palabra clave sin la extension '.algo'\n(Si tiene un punto '.' intentara buscar la pagina web en concreto y devolver toda su informacion)\n");
 				System.out.println("Estas son las paginas mas similares a la busqueda realizada: ");
-				BaseDatos.getBaseDatos().buscarWeb(sp);
+				Diccionario.getDiccionario().buscarWeb(sp);
 			}
 		}
 		else{
-			BaseDatos.getBaseDatos().buscarWeb(sp);
+			Diccionario.getDiccionario().buscarWeb(sp);
 		}
 		System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar.");
 	}
-	
+
 	private void cargarDeFichero(boolean cargarTodo) throws FileNotFoundException {
 		boolean cIndex=false, cLinks=false, cWords=false;
 		boolean ok = false;
-		
+
 		System.out.print("¿Que desea cargar? ");
-		
+
 		if(!cargarTodo){
 			System.out.print("(Elija una opcion:)\n");
 			String[] opciones = {"Las paginas webs(Indice)",
 								 "Los enlaces entre Webs(Links)",
-								 "Base de datos nueva (Nuevas palabras clave con las que buscar)",
+								 "Diccionario (Nuevas palabras clave con las que buscar)",
 								 "Aceptar"};
-								
+
 			for(int i=0; i<4; i++){
 				System.out.print(i+1);
 				System.out.println("- " + opciones[i]);
 			}
 		}
-		
+
 		while (!ok && !cargarTodo){
 			String opcionElegida = miMenu.leer();
 			String[] a = new String[] {"1","indice","index","page","pagina","pagina web","paginaweb","pag","webpage", "web"};
@@ -210,9 +210,9 @@ public class MainMenu {
 				System.out.println("");
 			}
 		}
-		
+
 		if (cargarTodo||cIndex||cLinks||cWords){
-			
+
 			String index=null, links=null, words=null;
 			if(cargarTodo||cIndex){
 				System.out.println("NOTA:  Escribir el nombre completo con la extension (Ej:'.txt')");
@@ -238,34 +238,34 @@ public class MainMenu {
 					words = "words.txt";
 				}
 				System.out.println("El nombre es: "+ words+"\n");
-				
+
 				System.out.println("Cargando archivos...");
 			}
-			
-			
-			
-		    
+
+
+
+
 			if(cargarTodo||cWords){
-				BaseDatos.getBaseDatos().reset();
+				Diccionario.getDiccionario().reset();
 				StopWatch timer = new StopWatch();
-				//Escanear palabras del diccionario para crear nuestra base de datos
+				//Escanear palabras del diccionario para crear nuestro diccionario
 				FileInputStream dicc = new FileInputStream("./"+words);
 				scan = new Scanner(dicc);
-				
+
 				while (scan.hasNextLine())
 				{
-					String linea = scan.nextLine();	
+					String linea = scan.nextLine();
 					String[] sp = linea.split(" +");
-					
+
 					String word = sp[0];
-					BaseDatos.getBaseDatos().anadirPorLetra(word);
-			
+					Diccionario.getDiccionario().anadirPorLetra(word);
+
 				}
 				scan.close();
-				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en cargar la base de datos(palabras del diccionario).");
+				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en cargar en el diccionario.");
 			}
-		
-			
+
+
 			if(cargarTodo||cIndex){
 				Webs.getWebs().reset();
 				StopWatch timer = new StopWatch();
@@ -277,27 +277,27 @@ public class MainMenu {
 				scan = new Scanner(webs);
 				while (scan.hasNextLine())//Hasta que no haya mas lineas
 				{
-			
+
 					String linea = scan.nextLine();		//Leer por linea
 					String[] sp = linea.split(" +");	//Separar por /
-					
+
 					String nombre = sp[0];
 					indice = Integer.parseInt(sp[1]);
 					pag = new PagWeb(indice, nombre, paginas);
 					Webs.getWebs().addWeb(pag);
-					BaseDatos.getBaseDatos().añadirWeb(nombre);
+					Diccionario.getDiccionario().añadirWeb(nombre);
 
 				}
-				scan.close();		
+				scan.close();
 				Webs.getWebs().setLastID(indice);
 				System.out.println("Ha tardado "+timer.elapsedTime()+"s en cargar las webs ordenadas por Nombre (arbol binario con las paginas).");
 				StopWatch timer1 = new StopWatch();
 				Webs.getWebs().crearWebsID(Webs.getWebs().raiz);
 				System.out.println("Ha tardado: "+timer1.elapsedTime()+"s en cargar las webs ordenadas por ID (arbol binario con las paginas).");
 				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en cargar total para cargar las webs");
-				
+
 			}
-			
+
 			if(cargarTodo||cLinks){
 				//Escanear paginas que referencia
 				StopWatch timer = new StopWatch();
@@ -305,14 +305,14 @@ public class MainMenu {
 				scan = new Scanner(link);
 				while (scan.hasNextLine())
 				{
-					String linea = scan.nextLine();	
+					String linea = scan.nextLine();
 					String[] sp = linea.split(" +");
-					
+
 					int indice = Integer.parseInt(sp[0]);
 					int idPagina = Integer.parseInt(sp[1]);
 					Webs.getWebs().encontrarWebPorID(indice).addElementListaRef(idPagina);
-			
-				}	
+
+				}
 				scan.close();
 				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en cargar la lista de paginas que referencia una web (Links).");
 			}
@@ -326,7 +326,7 @@ public class MainMenu {
 		String webs = miMenu.leer();
 		if (webs == null || webs.isEmpty()){
 			webs = "listaWebs.txt";
-		
+
 			StopWatch timer = new StopWatch();
 			//Mirar SI HAY fichero, si no hay fichero crea uno vacio sino NO HARA NADA
 			File websFich = new File("./"+webs);
@@ -336,7 +336,7 @@ public class MainMenu {
 				Webs.getWebs().guardar(Webs.getWebs().raiz, w, webs);
 				System.out.println("Exito, se han guardado los datos en el archivo ../" + webs);
 				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en guardar la lista de paginas.");
-							
+
 			} catch (IOException e) {
 				System.out.println("Ha habido algun error para crear el archivo de texto para guardar las webs");
 				e.printStackTrace();
@@ -355,7 +355,7 @@ public class MainMenu {
 		if (strings != null && !strings.isEmpty()){
 			String[] sp = strings.split(" +");
 			boolean esInt = true;
-	
+
 			for(int i=0; i<strings.length();i++)
 				if (!Character.isDigit(strings.charAt(i))){
 					esInt = false;
@@ -370,7 +370,7 @@ public class MainMenu {
 				}catch(NullPointerException ex){
 					System.out.println("El ID de la web que ha introducido es incorrecta o no existe en nuestra base de datos.");
 				}
-					
+
 			}
 		//Buscar pagina por nombre(String)
 			else{
@@ -379,7 +379,7 @@ public class MainMenu {
 						PagWeb pPagina1 = new PagWeb(1,"hola",l);
 						System.out.println(sp[0]);
 						System.out.println(pPagina1.getNombre());
-						
+
 						PagWeb pagina = Webs.websID.encontrarWeb(sp[0]);
 						System.out.println("Las paginas que tiene "+ sp[0] + "enlazadas son: ");
 						pagina.getListaRef();
@@ -396,7 +396,7 @@ public class MainMenu {
 					System.out.println("El nombre de la web que ha introducido es incorrecta o no existe en nuestra base de datos.");
 				}
 
-	
+
 			}
 			System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar la pagina web y devolver su lista de paginas referenciadas (Links).");
 		}
@@ -405,7 +405,7 @@ public class MainMenu {
 			pagWebReferenciadas();
 
 		}
-			
+
 		return listaRef;
 	}
 
@@ -415,7 +415,7 @@ public class MainMenu {
 		String[] opciones = {"Por NOMBRE (Alfabeticamente)",
 							 "Por ID (Numericamente)",
 							 "Volver al menu anterior"};
-							
+
 		for(int i=0; i<2; i++){
 			System.out.print(i+1);
 			System.out.println("- " + opciones[i]);
@@ -452,13 +452,13 @@ public class MainMenu {
 	}
 
 	private void addElemento() {
-		
+
 		System.out.print("¿Que quiere anadir una pagina o palabra clave?");
 			System.out.print("Elija una opcion:\n");
 			String[] opciones = {"Una pagina web",
 								 "Una palabra clave",
 								 "Volver al menu anterior"};
-								
+
 			for(int i=0; i<2; i++){
 				System.out.print(i+1);
 				System.out.println("- " + opciones[i]);
@@ -476,7 +476,7 @@ public class MainMenu {
 				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en anadir una pagina web.");
 			}
 			else if(miMenu.comparar(b, opcionElegida)){
-				miMenu.addWord(); 
+				miMenu.addWord();
 				atras = true;
 				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en anadir una palabra al diccionario.");
 			}
@@ -497,8 +497,8 @@ private void addWord() {
 
 		System.out.print("Introduzca la palabra clave que desea anadir para que el buscador la reconozca\n");
 		String word = miMenu.leer();
-		BaseDatos.getBaseDatos().anadirPorLetra(word);
-		System.out.println("Se a anadido la palabra clave a la base de datos(diccionario)\n");
+		Diccionario.getDiccionario().anadirPorLetra(word);
+		System.out.println("Se a anadido la palabra clave al diccionario\n");
 		System.out.println("(Para que el buscador encuentre por esta nueva palabra clave tiene que cargar el indice de las paginas web. NOTA: Si carga las webs no tendran la lista de paginas enlazadas.)\n");
 	}
 
@@ -509,9 +509,9 @@ private void addPagWeb() {
 		System.out.print("¿Cual es el nombre de la nueva pagina que va a ser anadida?\n");
 		String nombre = miMenu.leer();
 		int indice = Webs.getWebs().getLastID()+1;
-		
+
 		System.out.println("¿A que paginas web esta enlazadas? (Introducir IDs, para finalizar presionar enter)\n");
-		
+
 		try{
 			String ins = "ww";
 			while (ins != null || !ins.isEmpty()){
@@ -519,33 +519,33 @@ private void addPagWeb() {
 				if(ins != null || !ins.isEmpty()){
 					refs.add(Integer.parseInt(ins));
 				}
-				
+
 			}
 		}catch(NumberFormatException ex){ // handle your exception
-			
+
 			PagWeb newpag = new PagWeb(indice, nombre, refs);
 			newpag.anadirListaRef(refs);
 			Webs.getWebs().addWeb(newpag);
 			Webs.websID.addWeb(newpag);
-			BaseDatos.getBaseDatos().añadirWeb(nombre);
+			Diccionario.getDiccionario().añadirWeb(nombre);
 
 		}
 		Webs.getWebs().setLastID(indice);
-		System.out.println("Se a anadido la pagina web a la base de datos (arbol))\n");
+		System.out.println("Se ha anadido la pagina web a la base de datos (arbol))\n");
 	}
 
-//NO TOCAR MAS ABAJO	
+//NO TOCAR MAS ABAJO
 	private void salirApp(){
 		scan.close();
 		System.out.println("Hasta la próxima gracias por utilizar nuestro buscador");
 	}
-	
+
 	public String leer(){
 		scan = new Scanner(System.in);
 		String input = scan.nextLine();
 		return input.toLowerCase();
 	}
-	
+
 	public boolean comparar(String a[], String opcionElegida){
 		boolean igual = false;
 		int i=0;
