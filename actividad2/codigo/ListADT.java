@@ -25,10 +25,12 @@ public T first();
 public T last();
 //Da acceso al �ltimo elemento de la lista
 
+
 public boolean contains(T elem);
 //Determina si la lista contiene un elemento concreto
 
 public T find(T elem);
+
 //Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no est�
 
 public boolean isEmpty();

@@ -7,6 +7,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	// Atributos
 	protected Node<T> first; // apuntador al primero
+
 	protected String descr;  // descripci�n
 	protected int count;
 
@@ -26,6 +27,13 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T removeFirst() {
+	public T removeLast() {
+	// Elimina el �ltimo elemento de la lista
+        // Precondici�n: la lista tiene al menos un elemento
+			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+
+		   }
+
     // pre: la lista tiene al menos un elemento
 		// post: elimina y devuelve el primer elemento de la lista
 		// coste: 0(1)
@@ -92,6 +100,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 
 		return null;
+
 	}
 
 	public T first() {
@@ -103,6 +112,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public T last() {
 	//Da acceso al �ltimo elemento de la lista
+
 	      if (isEmpty())
 	          return null;
 	      else return first.prev.data;
@@ -110,6 +120,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public boolean contains(T elem) {
 	//Determina si la lista contiene un elemento concreto
+
 		boolean enc = false;
 		Node<T> aux = this.first;
 		if (isEmpty())
@@ -186,6 +197,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				T elem = it.next();
 				result = result + "[" + elem.toString() + "] \n";
 			}
+
 			return "SimpleLinkedList " + result + "]";
 		}
 
