@@ -135,8 +135,7 @@ public class Webs {
 		}
 	}
 
-	protected Nodo sustitucion (Nodo pNodo)
-	{
+	protected Nodo sustitucion (Nodo pNodo){
 
 		//pre: -
 		//post: devuelve la referencia a sustituir de pNodo, si tiene hijos (es decir, si es un subarbol) devuelve el subarbol de manera InOrder
@@ -253,14 +252,15 @@ public class Webs {
 
 	}
 
-	public void imprimirArbol (Nodo pNodo) {
+	public void imprimirArbol () {
 
-		//pre: si se quiere imprimir el arbol entero pNodo debe ser la raiz
-		//pre: se imprimir el arbol desde el pNodo dado de manera InOrder
+		//pre:
+		//pre: se imprimir el arbol de manera InOrder
+
+		pNodo = this.raiz;
 
 		if (pNodo != null) {
 			imprimirArbol(pNodo.getDer());
-			//System.out.println(pNodo);
 			pNodo.print();
 			imprimirArbol(pNodo.getIzq());
 

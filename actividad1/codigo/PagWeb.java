@@ -3,7 +3,7 @@ package eda;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class PagWeb{
+public class PagWeb implements Comparable{
 
 // ATRIBUTOS
 
@@ -47,6 +47,13 @@ public class PagWeb{
 	//Metodos de la lista
 	public void printList(){
 		System.out.println(this.getListaRef().toString());
+	}
+	
+	@Override
+    public int compareTo(Object obj) {
+        if (obj instanceof PagWeb)
+            return Webs.comparar(this, ((PagWeb) obj));
+        return 0;
 	}
 	
 	

@@ -1,22 +1,25 @@
 package segundaFase;
 
 public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T> {
-	
+
 	public void addToFront(T elem) {
-	// añade un elemento al comienzo
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		//pre: -
+		// post: anade un elemento al comienzo
+		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE: O(1)
+
 
 	}
 
 	public void addToRear(T elem) {
-	// añade un elemento al final 
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+	// aï¿½ade un elemento al final
+		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE: O(1)
 
 	}
-	
+
 	public void addAfter(T elem, T target) {
-	// Añade elem detrás de otro elemento concreto, target,  que ya se encuentra en la lista
-		// ¡COMPLETAR OPCIONAL!
+	// Aï¿½ade elem detrï¿½s de otro elemento concreto, target,  que ya se encuentra en la lista
+		// ï¿½COMPLETAR OPCIONAL!
+
 	}
 
 }
