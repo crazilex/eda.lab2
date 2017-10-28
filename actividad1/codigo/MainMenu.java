@@ -290,10 +290,6 @@ public class MainMenu {
 				}
 				scan.close();
 				Webs.getWebs().setLastID(indice);
-				System.out.println("Ha tardado "+timer.elapsedTime()+"s en cargar las webs ordenadas por Nombre (arbol binario con las paginas).");
-				StopWatch timer1 = new StopWatch();
-				Webs.getWebs().crearWebsID(Webs.getWebs().raiz);
-				System.out.println("Ha tardado: "+timer1.elapsedTime()+"s en cargar las webs ordenadas por ID (arbol binario con las paginas).");
 				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en cargar total para cargar las webs");
 
 			}
@@ -333,7 +329,7 @@ public class MainMenu {
 			try {
 				websFich.createNewFile();
 				PrintWriter w = null;
-				Webs.getWebs().guardar(Webs.getWebs().raiz, w, webs);
+				Webs.getWebs().guardar(w, webs);
 				System.out.println("Exito, se han guardado los datos en el archivo ../" + webs);
 				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en guardar la lista de paginas.");
 
@@ -363,9 +359,9 @@ public class MainMenu {
 		//Buscar pagina por id(int)
 			if(esInt){
 				try{
-					pagina = Webs.websID.encontrarWebPorID(Integer.parseInt(sp[0]));
+					pagina = Webs.getWebs().encontrarWebPorID(Integer.parseInt(sp[0]));
 					listaRef = Webs.getWebs().devolverWebsReferenciadas(pagina);
-					System.out.println("Devuelve las paginas web enlazadas a -> "+ Webs.websID.encontrarWebPorID(Integer.parseInt(sp[0])) +":\n  (el enunciado es un poco ambiguo no sabiamos si devolvia el objeto pagina web \n   o imprimir una lista con el nombre pero por si acaso)");
+					System.out.println("Devuelve las paginas web enlazadas a -> "+ Webs.getWebs().encontrarWebPorID(Integer.parseInt(sp[0])) +":\n  (el enunciado es un poco ambiguo no sabiamos si devolvia el objeto pagina web \n   o imprimir una lista con el nombre pero por si acaso)");
 					System.out.println(Webs.getWebs().devolverWebsReferenciadas(pagina).toString());
 				}catch(NullPointerException ex){
 					System.out.println("El ID de la web que ha introducido es incorrecta o no existe en nuestra base de datos.");
@@ -413,7 +409,7 @@ public class MainMenu {
 		System.out.print("¿Quiere obtener la lista ordenada alfabeticamente(por defecto) o numericamente por id?");
 		System.out.print("Elija una opcion:\n");
 		String[] opciones = {"Por NOMBRE (Alfabeticamente)",
-							 "Por ID (Numericamente)",
+							 /*"Por ID (Numericamente)",*/
 							 "Volver al menu anterior"};
 
 		for(int i=0; i<2; i++){
@@ -424,20 +420,24 @@ public class MainMenu {
 		while (!atras){
 			String opcionElegida = miMenu.leer();
 			String[] a = new String[] {"1","alfa","alfabeticamente", "por nombre","nombre"};
-			String[] b = new String[] {"2","por id","id","numericamente","num"};
+					/*
+					String[] b = new String[] {"2","por id","id","numericamente","num"};
+					*/
 			String[] c = new String[] {"3","back","volver","cancel","atras"," ",""};
 			if(miMenu.comparar(a, opcionElegida)){
 				StopWatch timer = new StopWatch();
-				Webs.getWebs().imprimirArbol(Webs.getWebs().raiz);
+				Webs.getWebs().imprimirArbol();
 				atras = true;
 				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en imprimir por Nombre (alfabeticamente).");
 			}
-			else if(miMenu.comparar(b, opcionElegida)){
-				StopWatch timer = new StopWatch();
-				Webs.websID.imprimirArbol(Webs.websID.raiz);
-				atras = true;
-				System.out.println("Ha tardado: "+timer.elapsedTime()+"s en imprimir por ID (numericamente).");
-			}
+					/*
+					else if(miMenu.comparar(b, opcionElegida)){
+						StopWatch timer = new StopWatch();
+						Webs.websID.imprimirArbol(Webs.websID.raiz);
+						atras = true;
+						System.out.println("Ha tardado: "+timer.elapsedTime()+"s en imprimir por ID (numericamente).");
+					}
+					*/
 			else if(miMenu.comparar(c, opcionElegida)){
 				atras = true;
 			}
@@ -526,7 +526,6 @@ private void addPagWeb() {
 			PagWeb newpag = new PagWeb(indice, nombre, refs);
 			newpag.anadirListaRef(refs);
 			Webs.getWebs().addWeb(newpag);
-			Webs.websID.addWeb(newpag);
 			Diccionario.getDiccionario().añadirWeb(nombre);
 
 		}

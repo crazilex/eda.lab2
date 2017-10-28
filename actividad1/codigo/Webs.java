@@ -1,5 +1,6 @@
 package eda;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -9,6 +10,7 @@ public class Webs {
 	// ATRIBUTOS
 	private TreeSet<PagWeb> arbol;
 	private static Webs miArbol = null;
+	private int lastID;
 
 	// CONSTRUCTORA
 	public Webs() {
@@ -134,6 +136,31 @@ public class Webs {
 		}
 		return listaRef;
 	}
+	
+	public void guardar(PrintWriter w, String webs) throws FileNotFoundException
+	{
+
+	    PagWeb web;
+	    Iterator<PagWeb> it = this.getIterador();
+	    
+	    //boolean top_call = false;  // Flag para salir de la recursion en el codigo anterior
+	    if (w == null) {
+	        FileOutputStream outputStream = new FileOutputStream("./"+webs);
+	        w = new PrintWriter(outputStream);
+	        //TOP CALL es un flag para el codigo anterior
+	        //top_call = true;  // mark highest entry point to know when to close writer in recursive call
+	    }
+	    
+	    while (it.hasNext()) {
+	        web = it.next();
+	        w.print(web+"\r\n");
+	    }
+
+	 
+	    //if (top_call)  // don't close writer in recursive calls
+	       
+	    w.close();
+	}
 
 	/*
 	public void guardar(Nodo mainNode, PrintWriter w, String webs) throws FileNotFoundException
@@ -176,6 +203,14 @@ public class Webs {
 
 		this.arbol = null;
 		//this.setLastID(0);
+	}
+
+	public int getLastID() {
+		return lastID;
+	}
+
+	public void setLastID(int lastID) {
+		this.lastID = lastID;
 	}
 
 	/*
