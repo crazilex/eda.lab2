@@ -14,7 +14,7 @@ public T removeFirst();
 //Elimina el primer elemento de la lista
 
 public T removeLast();
-//Elimina el último elemento de la lista
+//Elimina el ï¿½ltimo elemento de la lista
 
 public T remove(T elem);
 //Elimina un elemento concreto de la lista
@@ -23,19 +23,19 @@ public T first();
 //Da acceso al primer elemento de la lista
 
 public T last();
-//Da acceso al último elemento de la lista
+//Da acceso al ï¿½ltimo elemento de la lista
 
 public boolean contains(T elem);
 //Determina si la lista contiene un elemento concreto
 
 public T find(T elem);
-//Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no esté
+//Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no estï¿½
 
 public boolean isEmpty();
-//Determina si la lista está vacía
+//Determina si la lista estï¿½ vacï¿½a
 
 public int size();
-//Determina el número de elementos de la lista
+//Determina el nï¿½mero de elementos de la lista
 
 public Iterator<T> iterator();
 
