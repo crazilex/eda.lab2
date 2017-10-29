@@ -12,6 +12,7 @@ public class PruebaOrderedDoubleLinkedList {
 			l.add(9);
 			l.add(0);
 			l.add(20);
+			l.visualizarNodos(); //
 			l.remove(new Integer(7));
 
 			

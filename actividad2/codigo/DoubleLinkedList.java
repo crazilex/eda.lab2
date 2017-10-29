@@ -5,13 +5,12 @@ import java.util.NoSuchElementException;
 
 public class DoubleLinkedList<T> implements ListADT<T> {
 
-	// Atributos
+	// ATRIBUTOS
 	protected Node<T> first; // apuntador al primero
-
-	protected String descr;  // descripci�n
+	protected String descr;  // descripcion
 	protected int count;
 
-	// Constructor
+	// CONSTRUCTORA
 	public DoubleLinkedList() {
 		first = null;
 		descr = "";
@@ -19,11 +18,11 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public void setDescr(String nom) {
-	  descr = nom;
+		descr = nom;
 	}
 
 	public String getDescr() {
-	  return descr;
+		return descr;
 	}
 
 	public T removeFirst() {
@@ -64,14 +63,15 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 
 	public T remove(T elem) {
-	//Elimina un elemento concreto de la lista
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE: 0(n)
+		// pre: la lista tiene al menos un elemento
+		// post: elimina y devuelve el primer elemento de la lista
+		// coste: O(n) siendo n el numero de elementos de la lista
+
 		boolean enc = false;
 		Node<T> aux = this.first;
 		if (this.count == 1 && aux.data.equals(elem)){
 			this.first = null;
 			this.count = this.count - 1;
-
 		}else{
 			while (!enc && !aux.equals(this.first.prev)){
 				if (aux.data.equals(elem)){
@@ -105,7 +105,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T last() {
-	//Da acceso al �ltimo elemento de la lista
+	//Da acceso al ultimo elemento de la lista
 
 	      if (isEmpty())
 	          return null;
@@ -174,7 +174,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
 		Node<T> act = first;
 		boolean end = false;
-		
+
 		   @Override
 		   public boolean hasNext() {  //O(1)
 			   if (act == null) return false;
@@ -193,26 +193,26 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				   }
 				   return elem;
 			   }
-		   } 
+		   }
 
 
 	} // private class
 
 
-   public void visualizarNodos() {
+	public void visualizarNodos() {
 	   System.out.println(this.toString());
 	}
 
-		@Override
-		public String toString() {
-			String result = new String();
-			Iterator<T> it = iterator();
-			while (it.hasNext()) {
-				T elem = it.next();
-				result = result + "[" + elem.toString() + "] \n";
-			}
-
-			return "SimpleLinkedList " + result + "]";
+	@Override
+	public String toString() {
+		String result = new String();
+		Iterator<T> it = iterator();
+		while (it.hasNext()) {
+			T elem = it.next();
+			result = result + "[" + elem.toString() + "] \n";
 		}
+	
+		return "SimpleLinkedList " + result + "]";
+	}
 
 }
