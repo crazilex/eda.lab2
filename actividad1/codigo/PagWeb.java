@@ -52,7 +52,7 @@ public class PagWeb implements Comparable{
 	@Override
     public int compareTo(Object obj) {
         if (obj instanceof PagWeb)
-            return Webs.comparar(this, ((PagWeb) obj));
+            return comparar(this, ((PagWeb) obj));
         return 0;
 	}
 	
@@ -72,6 +72,22 @@ public class PagWeb implements Comparable{
 			}
 		}
 		return esta;
+	}
+	
+	public Integer comparar(PagWeb web1, PagWeb web2){
+		//pre: recibe dos webs (utiles)
+		//post: devuelve mediante un integer la compraracion alfabetica entre las dos webs, si web1 es mas pequena (a<z) devuelve un integer positivo, si son iguales 0 y sino negativo
+		//coste: O(1)
+
+		//creamos nuevas variable string
+		String nombreWeb1 = web1.getNombre().toLowerCase();
+		String nombreWeb2 = web2.getNombre().toLowerCase();
+
+		//las comparamos
+		int resultado = nombreWeb1.compareTo(nombreWeb2);
+
+		return resultado;
+
 	}
 	
 	public int buscar(int pIdString){ 

@@ -105,22 +105,6 @@ public class Webs {
 		}
 	}
 
-	public static Integer comparar(PagWeb web1, PagWeb web2){
-		//pre: recibe dos webs (utiles)
-		//post: devuelve mediante un integer la compraracion alfabetica entre las dos webs, si web1 es mas pequena (a<z) devuelve un integer positivo, si son iguales 0 y sino negativo
-		//coste: O(1)
-
-		//creamos nuevas variable string
-		String nombreWeb1 = web1.getNombre().toLowerCase();
-		String nombreWeb2 = web2.getNombre().toLowerCase();
-
-		//las comparamos
-		int resultado = nombreWeb1.compareTo(nombreWeb2);
-
-		return resultado;
-
-	}
-
 	public ArrayList<PagWeb> devolverWebsReferenciadas(PagWeb pPagina){
 		//pre: -
 		//post: devuelve un array list con objetos de clase PagWeb estando el array rellenado con las PagWeb a las que referencia pPagina
