@@ -177,20 +177,20 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		
 		   @Override
 		   public boolean hasNext() {  //O(1)
-			   if(this.act.equals(first) && end) return false;
-			   else if (this.act.equals(first.prev) && !end){
-				   end = true;
-				   return true;
-			   }
+			   if (act == null) return false;
+			   else if(this.act.equals(first) && end) return false;
 			   else return true;
 		   }
 
 		   @Override
 		   public T next() { //O(1)
-			   if (!hasNext()) throw new NoSuchElementException();
+			   if (!hasNext()) throw new NoSuchElementException("No hay mas elementos");
 			   else{
 				   T elem = act.data;
 				   act = act.next;
+				   if (act.equals(first)){
+					   end = true;
+				   }
 				   return elem;
 			   }
 		   } 
