@@ -76,9 +76,11 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 			while (!enc && !aux.equals(this.first.prev)){
 				if (aux.data.equals(elem)){
 					enc = true;
-					if (count == 2){
+					if (aux.equals(first)){
+						first.prev.next = first.next;
+						first.next.prev = first.prev;
 						first = aux.next;
-						first.next = first;
+						//first.prev = first;
 						
 					}else {
 						aux.next.prev = aux.prev;
