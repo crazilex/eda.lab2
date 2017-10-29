@@ -59,11 +59,70 @@ public class PruebaDoubleLinkedList {
 		// PRUEBAS addToFront //
 		
 		// Anadir solo un elemento
-		l2.addToFront(5); */
+		l2.addToFront(5);
 		
 		// Anadir dos elementos
 		l2.addToFront(5);
 		l2.addToFront(6);
+		
+		// Anadir dos veces el mismo elemento
+		l2.addToFront(5);
+		l2.addToFront(5);
+		l2.addToFront(6);
+		
+		// Anadir mas de dos elementos
+		l2.addToFront(5);
+		l2.addToFront(7);
+		l2.addToFront(6);
+		
+		// PRUEBAS removeFirst //
+		
+		// Eliminar primer elemento de una lista de solo un elemento
+		l2.addToFront(10);
+		l2.removeFirst();
+		
+		// Eliminar primer elemento de una lista de dos elementos
+		l2.addToFront(10);
+		l2.addToFront(12);
+		l2.removeFirst();
+		
+		// Eliminar primer elemento de una lista de mas de dos elementos
+		l2.addToFront(12);
+		l2.addToFront(10);
+		l2.addToFront(15);
+		l2.removeFirst();
+		
+		// PRUEBAS removeLast //
+		
+		// Eliminar ultimo elemento de una lista de solo un elemento
+		l2.addToFront(10);
+		l2.removeLast();
+		
+		// Eliminar ultimo elemento de una lista de dos elementos
+		l2.addToFront(10);
+		l2.addToFront(12);
+		l2.removeLast();
+		
+		// Eliminar primer elemento de una lista de mas de dos elementos
+		l2.addToFront(12);
+		l2.addToFront(10);
+		l2.addToFront(15);
+		l2.removeLast();
+		
+		// PRUEBAS remove //
+		
+		// Eliminar un elemento de una lista de solo un elemento (esta el elemento)
+		l2.addToFront(10);
+		l2.remove(10);
+		
+		// Eliminar un elemento de una lista de solo un elemento (no esta el elemento)
+		l2.addToFront(10);
+		l2.remove(12);*/
+		
+		// Eliminar un elemento (primero) de una lista de dos elementos (esta el elemento)
+		l2.addToFront(10);
+		l2.addToFront(12);
+		l2.remove(12);
 		
 		visualizarNodos(l2);
 		

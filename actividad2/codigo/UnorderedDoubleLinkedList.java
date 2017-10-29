@@ -43,10 +43,8 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 		}
 	}
 
-	public void addAfter(T elem, T target) {
-	// Anade elem detras de otro elemento concreto, target,  que ya se encuentra en la lista
-		// COMPLETAR OPCIONAL
-
+	public void addAfter(T elem, T target){
+		//OPCIONAL
 	}
 
 }

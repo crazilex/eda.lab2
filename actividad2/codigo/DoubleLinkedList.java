@@ -26,7 +26,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T removeFirst() {
-    // pre: la lista tiene al menos un elemento
+		// pre: la lista tiene al menos un elemento
 		// post: elimina y devuelve el primer elemento de la lista
 		// coste: 0(1)
 
@@ -64,7 +64,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public T remove(T elem) {
 		// pre: la lista tiene al menos un elemento
-		// post: elimina y devuelve el primer elemento de la lista
+		// post: elimina y devuelve el elemento de la lista especificado, si no esta deja la lista como estaba y devuelve null
 		// coste: O(n) siendo n el numero de elementos de la lista
 
 		boolean enc = false;
