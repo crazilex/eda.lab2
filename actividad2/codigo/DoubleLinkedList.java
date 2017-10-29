@@ -89,6 +89,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 			enc = true;
 		}
 		if (enc){
+			this.count = this.count - 1;
 			return aux.data;
 		}
 
@@ -172,16 +173,21 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	private class ListIterator implements Iterator<T> {
 	// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
 		Node<T> act = first;
-		   
+		boolean end = false;
+		
 		   @Override
 		   public boolean hasNext() {  //O(1)
-			   if (act == null) return false;
+			   if(this.act.equals(first) && end) return false;
+			   else if (this.act.equals(first.prev) && !end){
+				   end = true;
+				   return true;
+			   }
 			   else return true;
 		   }
 
 		   @Override
 		   public T next() { //O(1)
-			   if (!hasNext()) return null;
+			   if (!hasNext()) throw new NoSuchElementException();
 			   else{
 				   T elem = act.data;
 				   act = act.next;

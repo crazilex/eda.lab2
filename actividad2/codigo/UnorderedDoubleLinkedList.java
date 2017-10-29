@@ -11,12 +11,14 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 			super.first = n;
 			n.next = n;
 			n.prev = n;
+			this.count++;
 		}else{
 			n.next = super.first;
 			n.prev = super.first.prev;
 			super.first.prev.next = n;
 			super.first.prev = n;
 			this.first = n;
+			this.count++;
 		}
 	}
 
@@ -28,11 +30,13 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 			super.first = n;
 			n.next = n;
 			n.prev = n;
+			this.count++;
 		}else{
 			n.next = super.first;
 			n.prev = super.first.prev;
 			super.first.prev.next = n;
 			super.first.prev = n;
+			this.count++;
 		}
 	}
 
