@@ -1,4 +1,4 @@
-package segundaFase;
+﻿package segundaFase;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -8,7 +8,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	// Atributos
 	protected Node<T> first; // apuntador al primero
 
-	protected String descr;  // descripci�n
+	protected String descr;  // descripcion
 	protected int count;
 
 	// Constructor
@@ -28,8 +28,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public T removeFirst() {
 	public T removeLast() {
-	// Elimina el �ltimo elemento de la lista
-        // Precondici�n: la lista tiene al menos un elemento
+	// Elimina el ?ltimo elemento de la lista
+        // Precondici?n: la lista tiene al menos un elemento
 			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
 
 		   }
@@ -111,7 +111,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T last() {
-	//Da acceso al �ltimo elemento de la lista
+	//Da acceso al ultimo elemento de la lista
 
 	      if (isEmpty())
 	          return null;
@@ -165,11 +165,11 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public boolean isEmpty()
-	//Determina si la lista est� vac�a
+	//Determina si la lista esta vacia
 	{ return first == null;};
 
 	public int size()
-	//Determina el n�mero de elementos de la lista
+	//Determina el numero de elementos de la lista
 	{ return count;};
 
 	/** Return an iterator to the stack that iterates through the items . */
