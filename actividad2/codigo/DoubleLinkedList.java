@@ -61,7 +61,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		return borrado;
 	}
 
-
 	public T remove(T elem) {
 		// pre: la lista tiene al menos un elemento
 		// post: elimina y devuelve el elemento de la lista especificado, si no esta deja la lista como estaba y devuelve null
@@ -145,13 +144,17 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public T find(T elem) {
 		// pre: -
-		// post: determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no esta
+		// post: determina si la lista contiene un elemento concreto, y devuelve su referencia, null en caso de que no esta
 		// coste: O(n) siendo n el numero de elementos de la lista
 
 		boolean enc = false;
 		Node<T> aux = this.first;
-		if (isEmpty())
+		
+		if (isEmpty()) {
+			System.out.println("entra");
 			return null;
+			
+		}
 		else{
 			while (!enc && !aux.equals(this.first.prev)){
 				if (aux.data.equals(elem)){
@@ -206,7 +209,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 
 	} // private class
-
 
 	public void visualizarNodos() {
 	   System.out.println(this.toString());

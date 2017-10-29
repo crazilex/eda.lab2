@@ -13,11 +13,9 @@ public class PruebaDoubleLinkedList {
 			System.out.println(num);
 		}
 	}
-	
-	
+		
 	public static void main(String[] args)  {
 		
-		/*
 		UnorderedDoubleLinkedList<Integer> l = new UnorderedDoubleLinkedList<Integer>();
 		l.addToRear(1);
 		l.addToRear(3);
@@ -39,13 +37,12 @@ public class PruebaDoubleLinkedList {
 		System.out.println("9? " + l.find(9));
 		System.out.println("0? " + l.find(0));
 		System.out.println("7? " + l.find(7));
-		*/
+		
 		
 		// CASOS DE PRUEBA NUESTROS
 		
 		UnorderedDoubleLinkedList<Integer> l2 = new UnorderedDoubleLinkedList<Integer>();
-		
-		/*
+		int data;
 		
 		// PRUEBAS addToRear //
 		
@@ -117,14 +114,101 @@ public class PruebaDoubleLinkedList {
 		
 		// Eliminar un elemento de una lista de solo un elemento (no esta el elemento)
 		l2.addToFront(10);
-		l2.remove(12);*/
+		l2.remove(12);
 		
 		// Eliminar un elemento (primero) de una lista de dos elementos (esta el elemento)
 		l2.addToFront(10);
 		l2.addToFront(12);
 		l2.remove(12);
 		
-		visualizarNodos(l2);
+		// Eliminar un elemento (ultimo) de una lista de dos elementos (esta el elemento)
+		l2.addToFront(10);
+		l2.addToFront(12);
+		l2.remove(10);
 		
+		// Eliminar un elemento de una lista de dos elementos (no esta el elemento)
+		l2.addToFront(10);
+		l2.addToFront(12);
+		l2.remove(11);
+		
+		// Eliminar un elemento (primero) de una lista de mas de dos elementos
+		l2.addToFront(12);
+		l2.addToFront(10);
+		l2.addToFront(15);
+		l2.remove(15);
+		
+		// Eliminar un elemento (un elemento del medio) de una lista de mas de dos elementos
+		l2.addToFront(12);
+		l2.addToFront(10);
+		l2.addToFront(15);
+		l2.remove(10);
+		
+		// Eliminar un elemento (ultimo) de una lista de mas de dos elementos
+		l2.addToFront(12);
+		l2.addToFront(10);
+		l2.addToFront(15);
+		l2.remove(12);
+		
+		// PRUEBAS contains //
+		
+		// Lista vacia
+		System.out.print(l2.contains(5));
+		
+		// Lista de un elemento
+		l2.addToFront(2);
+		System.out.print(l2.contains(2));
+		System.out.print(l2.contains(1));
+		
+		// Lista de dos o mas elementos
+		l2.addToFront(2);
+		l2.addToFront(3);
+		System.out.print(l2.contains(2));
+		System.out.print(l2.contains(3));
+		
+		// PRUEBAS find //
+		
+		// Lista vacia
+		data = l2.find(5);
+		System.out.println(data);
+		
+		// Lista de un elemento
+		l2.addToFront(5);
+		data = l2.find(5);
+		System.out.println(data);
+		
+		// Encontrar un elemento (primero) de una lista de dos elementos
+		l2.addToFront(5);
+		l2.addToFront(8);
+		data = l2.find(8);
+		System.out.println(data);
+		
+		// Encontrar un elemento (ultimo) de una lista de dos elementos
+		l2.addToFront(5);
+		l2.addToFront(8);
+		data = l2.find(8);
+		System.out.println(data);
+		
+		// Encontrar un elemento (primero) de una lista de dos o mas elementos
+		l2.addToFront(5);
+		l2.addToFront(8);
+		l2.addToFront(12);
+		data = l2.find(12);
+		System.out.println(data);
+		
+		// Encontrar un elemento (un elemento del medio) de una lista de dos o mas elementos
+		l2.addToFront(5);
+		l2.addToFront(8);
+		l2.addToFront(12);
+		data = l2.find(8);
+		System.out.println(data);
+		
+		// Encontrar un elemento (ultimo) de una lista de dos o mas elementos
+		l2.addToFront(5);
+		l2.addToFront(8);
+		l2.addToFront(12);
+		data = l2.find(5);
+		System.out.println(data);
+		
+		visualizarNodos(l2);
 	}
 }
