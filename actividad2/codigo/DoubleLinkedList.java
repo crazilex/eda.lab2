@@ -27,13 +27,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T removeFirst() {
-	public T removeLast() {
-	// Elimina el �ltimo elemento de la lista
-        // Precondici�n: la lista tiene al menos un elemento
-			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-
-		   }
-
     // pre: la lista tiene al menos un elemento
 		// post: elimina y devuelve el primer elemento de la lista
 		// coste: 0(1)
