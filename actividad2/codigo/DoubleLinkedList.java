@@ -121,13 +121,14 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public boolean contains(T elem) {
-	//Determina si la lista contiene un elemento concreto
+		//pre: -
+		//post: devuelve un booleano en funcion de si la lista contiene elem
+		//coste: O(n) siendo n el numero de elementos de la lista
 
 		boolean enc = false;
 		Node<T> aux = this.first;
 		if (isEmpty())
 			return false;
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE: O(n)
 		else{
 			while (!enc && !aux.equals(this.first.prev)){
 				if (aux.data.equals(elem)){
