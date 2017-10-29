@@ -27,13 +27,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T removeFirst() {
-	public T removeLast() {
-	// Elimina el ?ltimo elemento de la lista
-        // Precondici?n: la lista tiene al menos un elemento
-			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-
-		   }
-
     // pre: la lista tiene al menos un elemento
 		// post: elimina y devuelve el primer elemento de la lista
 		// coste: 0(1)
@@ -96,6 +89,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 			enc = true;
 		}
 		if (enc){
+			this.count = this.count - 1;
 			return aux.data;
 		}
 
@@ -177,9 +171,29 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	// an iterator, doesn't implement remove() since it's optional
 	private class ListIterator implements Iterator<T> {
-
 	// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		Node<T> act = first;
+		boolean end = false;
+		
+		   @Override
+		   public boolean hasNext() {  //O(1)
+			   if (act == null) return false;
+			   else if(this.act.equals(first) && end) return false;
+			   else return true;
+		   }
 
+		   @Override
+		   public T next() { //O(1)
+			   if (!hasNext()) throw new NoSuchElementException("No hay mas elementos");
+			   else{
+				   T elem = act.data;
+				   act = act.next;
+				   if (act.equals(first)){
+					   end = true;
+				   }
+				   return elem;
+			   }
+		   } 
 
 
 	} // private class
