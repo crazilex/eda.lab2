@@ -1,4 +1,4 @@
-package segundaFase;
+﻿package segundaFase;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -159,11 +159,11 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public boolean isEmpty()
-	//Determina si la lista est� vac�a
+	//Determina si la lista esta vacia
 	{ return first == null;};
 
 	public int size()
-	//Determina el n�mero de elementos de la lista
+	//Determina el numero de elementos de la lista
 	{ return count;};
 
 	/** Return an iterator to the stack that iterates through the items . */
@@ -211,7 +211,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 			T elem = it.next();
 			result = result + "[" + elem.toString() + "] \n";
 		}
-	
+
 		return "SimpleLinkedList " + result + "]";
 	}
 
