@@ -1,6 +1,9 @@
 # eda.proyectos
 
-DUDAS: -
+LINK A LA MEMORIA: https://www.overleaf.com/11866032zjsrpdpwvdqy
 
 BUGS:
-  1. El metodo add() de Webs no funciona bien al leer de fichero (con pruebas manuales si funciona).
+  - El metodo add() de Webs no funciona bien al leer de fichero (con pruebas manuales si funciona).
+
+DUDAS:
+  -
