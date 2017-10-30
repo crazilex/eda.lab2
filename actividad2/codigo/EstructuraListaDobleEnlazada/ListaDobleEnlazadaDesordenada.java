@@ -31,7 +31,12 @@ public class ListaDobleEnlazadaDesordenada<T> extends ListaDobleEnlazada<T> impl
 		Nodo<T> nuevo = new Nodo( pElemento );
 		super.cuantos++;
 		
-		if ( super.esVacia() ) { super.lista = nuevo; }
+		if ( super.esVacia() ) 
+		{ 
+			super.lista = nuevo; 
+			super.lista.setAnterior ( nuevo );
+			super.lista.setSiguiente( nuevo );
+		}
 		else 
 		{
 			Nodo<T> ultimo = super.lista.getAnterior(); 			
@@ -45,7 +50,6 @@ public class ListaDobleEnlazadaDesordenada<T> extends ListaDobleEnlazada<T> impl
 	public void anadirDespues( T pElemento , T pTarget ) 
 	{
 		Nodo<T> targeted = buscar( pTarget );
-		super.cuantos++;
 		
 		if ( targeted == null || targeted.getDato().equals( this.Ultimo() ) ) { this.anadirFinal( pElemento ); }
 		else
@@ -56,6 +60,7 @@ public class ListaDobleEnlazadaDesordenada<T> extends ListaDobleEnlazada<T> impl
 			nuevo.setSiguiente( siguiente );			
 			targeted.setSiguiente( nuevo );
 			siguiente.setAnterior( nuevo );
+			super.cuantos++;
 		}
 	}
 

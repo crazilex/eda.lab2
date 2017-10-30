@@ -34,24 +34,32 @@ public class ListaDobleEnlazada<T> implements LDE<T>
 	{
 		Nodo<T> eliminado = this.lista;           // eliminamos el primero de la lista
 		Nodo<T> ultimo = eliminado.getAnterior(); 
-		
-		this.lista.getSiguiente();          // el primero pasa a ser el siguiente de la lista		
-		this.lista.setAnterior( ultimo );   // el nuevo primer elemento pasa a apuntar al ultimo por detras
-		ultimo.setSiguiente( this.lista );  // el ultimo elemento pasa a puntar al nuevo primero por delante
-		
 		this.cuantos--;
+		
+		if ( this.Primero() == this.Ultimo() ) { this.lista = null; }
+		else 
+		{
+			this.lista = this.lista.getSiguiente();  // el primero pasa a ser el siguiente de la lista		
+			this.lista.setAnterior( ultimo );        // el nuevo primer elemento pasa a apuntar al ultimo por detras
+			ultimo.setSiguiente( this.lista );       // el ultimo elemento pasa a puntar al nuevo primero por delante	
+		}
+		
 		return eliminado.getDato();         // devolvemos el dato del elemento eliminado
 	}
 
 	public T eliminarUltimo() 
 	{
 		Nodo<T> eliminado = this.lista.getAnterior(); // eliminamos el ultimo de la lista
-		Nodo<T> ultimo = eliminado.getAnterior();     // el nuevo ultimo pasa a ser el penultimo
-		
-		this.lista.setAnterior( ultimo );             // el primero pasa a apuntar al nuevo ultimo por detras
-		ultimo.setSiguiente( this.lista );            // el nuevo ultimo pasa a apuntar al primero por delante
-		
+		Nodo<T> ultimo = eliminado.getAnterior();     // el nuevo ultimo pasa a ser el penultimo		
 		this.cuantos--;
+		
+		if ( this.Primero() == this.Ultimo() ) { this.lista = null; }
+		else 
+		{
+			this.lista.setAnterior( ultimo );             // el primero pasa a apuntar al nuevo ultimo por detras
+			ultimo.setSiguiente( this.lista );            // el nuevo ultimo pasa a apuntar al primero por delante
+		}
+		
 		return eliminado.getDato();                   // devolvemos el dato del elemento eliminado
 	}
 
@@ -92,15 +100,22 @@ public class ListaDobleEnlazada<T> implements LDE<T>
 	{
 		boolean esta = false;
 		Nodo<T> buscado = null;
-		Iterador<T> itr = this.getIterador();
-		while ( itr.tieneSiguiente() && !esta ) 
-		{ 
-			if ( itr.siguiente().equals( pElemento ) ) 
+		if ( !this.esVacia() ) 
+		{
+			
+			Iterador<T> itr = this.getIterador();
+			int i = itr.getTamano();
+			while ( itr.tieneSiguiente() && !esta && i>0 ) 
 			{ 
-				esta = true; 
-				buscado = itr.getActual();
-			} 
-		}
+				i--;
+				itr.siguiente();
+				if ( itr.getActual().getDato().equals( pElemento ) ) 
+				{ 
+					esta = true; 
+					buscado = itr.getActual();
+				}
+			}
+		}	
 		return buscado;	
 	}	
 	
@@ -114,7 +129,7 @@ public class ListaDobleEnlazada<T> implements LDE<T>
 		while ( i > 0 ) 
 		{ 
 			i--;
-			System.out.println( (Comparable<T>)itr.getActual().toString() ); 
+			System.out.println( (Comparable<T>)itr.getActual().getDato().toString() ); 
 			itr.siguiente();
 		}
 	}	
