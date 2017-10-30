@@ -20,24 +20,28 @@ public class DiccionarioTest {
 		Diccionario.getDiccionario().reset();
 	}
 
-	/*@Test
+	@Test
 	public void testImprimir() {
 		Diccionario.getDiccionario().imprimir();
 		Diccionario.getDiccionario().reset();
-		Diccionario.getDiccionario().anadirPorLetra(pc2);
-		Diccionario.getDiccionario().anadirPorLetra(pc1);
+		Diccionario.getDiccionario().anadirPalabra("Casa");
+		Diccionario.getDiccionario().anadirPalabra("Coche");
 		Diccionario.getDiccionario().imprimir();
-	}*/
+		Diccionario.getDiccionario().añadirWeb("Casa.com");
+		Diccionario.getDiccionario().añadirWeb("CasaCoche.com");
+		Diccionario.getDiccionario().añadirWeb("Coche.com");
+		Diccionario.getDiccionario().imprimir();
+	}
 
-	@Test
+	/*@Test
 	public void testAñadirWeb() {
 		for(int p = 0; p<100000; p++){
-			Diccionario.getDiccionario().anadirPorLetra("Casa");
-			Diccionario.getDiccionario().anadirPorLetra("Coche");
-			Diccionario.getDiccionario().anadirPorLetra("Destruccion");
+			Diccionario.getDiccionario().anadirPalabra("Casa");
+			Diccionario.getDiccionario().anadirPalabra("Coche");
+			Diccionario.getDiccionario().anadirPalabra("Destruccion");
 		}
-		Diccionario.getDiccionario().anadirPorLetra("Destrussion");
-		Diccionario.getDiccionario().anadirPorLetra("Kotxe");
+		Diccionario.getDiccionario().anadirPalabra("Destrussion");
+		Diccionario.getDiccionario().anadirPalabra("Kotxe");
 		System.out.println("YA");
 		for(int p = 0; p<3000000; p++){
 			System.out.println(p);
@@ -49,5 +53,5 @@ public class DiccionarioTest {
 		System.out.println(Diccionario.getDiccionario().getPalabras().get("Kotxe"));
 		Diccionario.getDiccionario().eliminarWeb("nKotxe.com");
 		System.out.println(Diccionario.getDiccionario().getPalabras().get("Kotxe"));
-	}
+	}*/
 }

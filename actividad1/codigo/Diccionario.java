@@ -1,6 +1,5 @@
 package eda;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 //import java.util.Map;
@@ -10,11 +9,11 @@ import java.util.HashMap;
 public class Diccionario {
 	//Atributos
 	private static Diccionario miDiccionario = null;
-	private HashMap<String, ArrayList<String>> palabras = null;
+	private HashMap<String, UnorderedDoubleLinkedList<String>> palabras = null;
 
 	//Constructora
 	private Diccionario(){
-		this.palabras = new HashMap<String, ArrayList<String>>();
+		this.palabras = new HashMap<String, UnorderedDoubleLinkedList<String>>();
 	}
 
 	public static Diccionario getDiccionario() {
@@ -25,16 +24,16 @@ public class Diccionario {
 	}
 
 	//Devuelve el hashmap.
-	public HashMap<String, ArrayList<String>> getPalabras(){
+	public HashMap<String, UnorderedDoubleLinkedList<String>> getPalabras(){
 		return this.palabras;
 	}
 
 	//Esto sera para la constructora, para poder añadir las palabras al diccionario.
 	//pre: Una palabra del diccionario no vacia.
 	//post: Annade esa palabra como key en caso de no existir.
-	public void anadirPorLetra(String palabra){
+	public void anadirPalabra(String palabra){
 		if (!this.palabras.containsKey(palabra)){
-			ArrayList<String> l = new ArrayList<String>();
+			UnorderedDoubleLinkedList<String> l = new UnorderedDoubleLinkedList<String>();
 			this.palabras.put(palabra, l);
 		}
 	}
@@ -50,7 +49,7 @@ public class Diccionario {
 			for (int pos = 0; pos<=(palabra.length()-l); pos++) {
 				String posible = palabra.substring(pos, pos+l);
 				if(palabras.containsKey(posible)){
-	        		palabras.get(posible).add(web);
+	        		palabras.get(posible).addToRear(web);
 	        	}
 	        }
 		}
@@ -84,7 +83,7 @@ public class Diccionario {
 					String posible = busca[i].substring(pos, pos+l);
 					if(palabras.containsKey(posible)){
 						System.out.println("PARA: "+ posible);
-						System.out.println(palabras.get(posible));
+						palabras.get(posible).visualizarNodos();
 						sinCoincidencias = false;
 					}
 
@@ -101,7 +100,7 @@ public class Diccionario {
 	//Imprime todas las keys y sus listas.
 	public void imprimir(){
 	    for(String key: palabras.keySet()){
-	        System.out.println(key + " = " + palabras.get(key));
+	        System.out.println(key + " - " + palabras.get(key));
 	    }
 
 	}
