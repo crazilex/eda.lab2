@@ -31,6 +31,7 @@ public class Diccionario {
 	//Esto sera para la constructora, para poder añadir las palabras al diccionario.
 	//pre: Una palabra del diccionario no vacia.
 	//post: Annade esa palabra como key en caso de no existir.
+	//Coste: O(1)
 	public void anadirPalabra(String palabra){
 		if (!this.palabras.containsKey(palabra)){
 			UnorderedDoubleLinkedList<String> l = new UnorderedDoubleLinkedList<String>();
@@ -41,6 +42,7 @@ public class Diccionario {
 	//Metodo que se utilizara para introducir el nombre de una Web en las palabras del Diccionario.
 	//pre: Un nombre no vacio de una web.
 	//post: Annade el nombre de la web a todas las palabras que utiliza esa web.
+	//Coste: O(n), siendo n la longitud de la palabra entrante.
 	public void añadirWeb(String web){
 		String[] w = web.split("\\.");
 		//String[] w2 = w[0].split("[0-9]+");
@@ -59,6 +61,7 @@ public class Diccionario {
 	//Metodo que se utilizara para eliminar el nombre de una Web en las palabras del Diccionario.
 	//pre: Un nombre no vacio de una web.
 	//post: Elimina el nombre de la web en todas las palabras que utiliza esa web.
+	//Coste: O(n), siendo n la longitud de la palabra entrante.
 	public void eliminarWeb(String web){
 		String[] w = web.split("\\.");
 		//String[] w2 = w[0].split("[0-9]+");
@@ -75,6 +78,7 @@ public class Diccionario {
 
 	//pre: Recibe lo que ha sido escrito por teclado.
 	//post: Devuelve la lista de paginas relacionadas con la palabra.
+	//Coste: O(n*m*l), siendo n la longitud de la palabra entrante, y m la longitud de array, y l el numero de elmentos de la UnorderedDobleLinkedList.
 	public void buscarWeb(String[] busca){
 		boolean sinCoincidencias = true;
 		for (int i = 0; i< busca.length; i++){
