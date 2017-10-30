@@ -78,7 +78,7 @@ public class UnorderedDoubleLinkedListTest {
 		visualizarNodos(l);
 		
 		System.out.println("\nInverso");
-		Node<Integer> n = l.first.prev;
+		Node<Integer> n = l.first.prev; 
 		for(int i = 0; i<l.count; i++){
 			System.out.println(n.data);
 			n = n.prev;
@@ -116,6 +116,8 @@ public class UnorderedDoubleLinkedListTest {
 	@Test
 	public void testRemove() {
 		System.out.println("\n---------testRemove()");
+		System.out.println("Vacio:");
+		System.out.println(l.remove(1));
 		System.out.println("Un elemento:");
 		l.addToRear(1);
 		visualizarNodos(l);
