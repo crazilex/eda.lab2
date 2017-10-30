@@ -70,7 +70,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		Node<T> aux = this.first;
 		if (this.count == 1 && aux.data.equals(elem)){
 			this.first = null;
-			this.count = this.count - 1;
+			enc = true;
 		}else{
 			while (!enc && !aux.equals(this.first.prev)){
 				if (aux.data.equals(elem)){
@@ -151,7 +151,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		Node<T> aux = this.first;
 		
 		if (isEmpty()) {
-			System.out.println("entra");
+			//System.out.println("entra");
 			return null;
 			
 		}
