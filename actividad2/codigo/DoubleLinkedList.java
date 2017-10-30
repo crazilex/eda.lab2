@@ -62,42 +62,44 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T remove(T elem) {
-		// pre: la lista tiene al menos un elemento
+		// pre: -
 		// post: elimina y devuelve el elemento de la lista especificado, si no esta deja la lista como estaba y devuelve null
 		// coste: O(n) siendo n el numero de elementos de la lista
 
 		boolean enc = false;
 		Node<T> aux = this.first;
-		if (this.count == 1 && aux.data.equals(elem)){
-			this.first = null;
-			enc = true;
-		}else{
-			while (!enc && !aux.equals(this.first.prev)){
-				if (aux.data.equals(elem)){
-					enc = true;
-					if (aux.equals(first)){
-						first.prev.next = first.next;
-						first.next.prev = first.prev;
-						first = aux.next;
-						//first.prev = first;
+		if (!isEmpty()){
+			if (this.count == 1 && aux.data.equals(elem)){
+				this.first = null;
+				enc = true;
+			}else{
+				while (!enc && !aux.equals(this.first.prev)){
+					if (aux.data.equals(elem)){
+						enc = true;
+						if (aux.equals(first)){
+							first.prev.next = first.next;
+							first.next.prev = first.prev;
+							first = aux.next;
+							//first.prev = first;
 						
-					}else {
-						aux.next.prev = aux.prev;
-						aux.prev.next = aux.next;
+						}else {
+							aux.next.prev = aux.prev;
+							aux.prev.next = aux.next;
+						}
+					}else{
+						aux = aux.next;
 					}
-				}else{
-					aux = aux.next;
 				}
 			}
-		}
-		if (aux.data.equals(elem) && !enc){
-			aux.next.prev = aux.prev;
-			aux.prev.next = aux.next;
-			enc = true;
-		}
-		if (enc){
-			this.count = this.count - 1;
-			return aux.data;
+			if (aux.data.equals(elem) && !enc){
+				aux.next.prev = aux.prev;
+				aux.prev.next = aux.next;
+				enc = true;
+			}
+			if (enc){
+				this.count = this.count - 1;
+				return aux.data;
+			}
 		}
 
 		return null;
