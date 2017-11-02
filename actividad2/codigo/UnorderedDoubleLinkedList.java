@@ -6,7 +6,7 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 		// pre: -
 		// post: anade un elemento al comienzo
 		// coste: O(1)
-		
+
 		Node<T> n = new Node<T>(elem);
 		if (super.count == 0){
 			super.first = n;
@@ -27,7 +27,7 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 		// pre: -
 		// post: anade un elemento al final
 		// coste: O(1)
-		
+
 		Node<T> n = new Node<T>(elem);
 		if (super.count == 0){
 			super.first = n;
@@ -44,7 +44,35 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 	}
 
 	public void addAfter(T elem, T target){
-		//OPCIONAL
-	}
+			//pre: target se encuentra en la lista
+			//post: se anade elem detras de target
+			//coste: O(n) siendo n el numero de elementos de la lista
+
+			boolean enc = false;
+			Node<T> aux = first;
+			Node<T> nuevo = new Node<T>(elem);
+
+			while(!enc && (aux.next != first)) {
+				if (aux.data.equals(target)) {
+					enc = true;
+					nuevo.prev = aux;
+					nuevo.next = aux.next;
+					aux.next.prev = nuevo;
+					aux.next = nuevo;
+					count++;
+				}
+				else {
+					aux = aux.next;
+				}
+			}
+			if (first.prev.data.equals(target) && !enc) {
+				enc = true;
+				nuevo.prev = aux;
+				nuevo.next = aux.next;
+				aux.next.prev = nuevo;
+				aux.next = nuevo;
+				count++;
+			}
+		}
 
 }
