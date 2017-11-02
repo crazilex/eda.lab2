@@ -42,19 +42,19 @@ public class ListaEnlazada<T>
 		if ( this.lista == null ) { this.lista = nuevo; }
 		else 
 		{
-			ListaEnlazada<T> x = this;
-			ListaEnlazada<T> y = this;
+			Nodo<T> x = this.lista;
+			Nodo<T> y = this.lista;
 			boolean primero = false;
-			while ( ( ( (Comparable<T> )x.getLista().getDato() ).compareTo( pDato ) ) > 0 && ( x.getLista().getSigiente() != null ) )
+			while ( ( ( (Comparable<T> )x.getDato() ).compareTo( pDato ) ) > 0 && ( x.getSigiente() != null ) )
 			{
-				if ( primero ) { y.setLista( y.getLista().getSigiente() ); } else { primero = true; }
-				x.setLista( x.getLista().getSigiente() ); 
+				if ( primero ) { y = y.getSigiente(); } else { primero = true; }
+				x = x.getSigiente(); 
 			}
-			if ( x.getLista().getSigiente() == null ) { this.anadirFinal( pDato ); }
+			if ( x.getSigiente() == null ) { this.anadirFinal( pDato ); }
 			else 
 			{
-				y.getLista().setSigiente( nuevo );
-				nuevo.setSigiente( x.getLista() );
+				y.setSigiente( nuevo );
+				nuevo.setSigiente( x );
 			}	
 		}		
 	}
@@ -62,11 +62,11 @@ public class ListaEnlazada<T>
 	// IMPRIMIR
 	public void imprimir()
 	{
-		ListaEnlazada<T> x = this;
-		while ( x.getLista().getSigiente() != null )
+		Nodo<T> x = this.lista;
+		while ( x.getSigiente() != null )
 		{
-			x.setLista( x.getLista().getSigiente() ); 
-			System.out.println( x.getLista().getDato().toString() ); 
+			x = x.getSigiente(); 
+			System.out.println( x.getDato().toString() ); 
 		}
 	}
 	
@@ -74,17 +74,17 @@ public class ListaEnlazada<T>
 	public boolean esSublista ( ListaEnlazada<T> l1 )
 	{
 		boolean esSublista = true;
-		ListaEnlazada<T> x = this;
-		ListaEnlazada<T> y = l1;
+		Nodo<T> x = this.lista;
+		Nodo<T> y = l1.lista;
 		
-		while ( y.getLista().getSigiente() != null && esSublista ) 
+		while ( y.getSigiente() != null && esSublista ) 
 		{
-			if ( x.getLista().getDato().equals( y.getLista().getDato() ) ) 
+			if ( x.getDato().equals( y.getDato() ) ) 
 			{
-				x.setLista( x.getLista().getSigiente() );
-				y.setLista( y.getLista().getSigiente() );
+				x = x.getSigiente();
+				y = y.getSigiente();
 			}
-			else if ( ( (Comparable<T>)x.getLista().getDato() ).compareTo( y.getLista().getDato() ) > 0 ) { y.setLista( y.getLista().getSigiente() ); }
+			else if ( ( (Comparable<T>)x.getDato() ).compareTo( y.getDato() ) > 0 ) { y = y.getSigiente(); }
 			else { esSublista = false; }
 		}
 		if ( esSublista ) { System.out.println("l1 es Sublista de l2"); } else { System.out.println("l1 y l2 no son sublista"); }
