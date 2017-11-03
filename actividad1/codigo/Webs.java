@@ -185,7 +185,7 @@ public class Webs {
 		//post: vacia el arbol
 		//coste: O(1)
 
-		this.arbol = null;
+		this.arbol = new TreeSet<PagWeb>();
 		//this.setLastID(0);
 	}
 
@@ -197,7 +197,7 @@ public class Webs {
 		this.lastID = lastID;
 	}
 
-	/*
+	
 	public static void main(String[] args) {
 
 		Webs miArbol = new Webs();
@@ -205,18 +205,13 @@ public class Webs {
 		// Pruebas anadir webs
 
 		ArrayList<Integer> l = new ArrayList<Integer>(); //les damos una lista vacia de refencias para los tests
-		l.add(3);
-		l.add(5);
-		l.add(5);
-		l.add(50);
-		l.add(1);
 		PagWeb pPagina1 = new PagWeb(1,"hola",l);
 		PagWeb pPagina2 = new PagWeb(2,"test",l);
 		PagWeb pPagina3 = new PagWeb(3,"waifu",l);
 		PagWeb pPagina5 = new PagWeb(5,"pr0n",l);
 		PagWeb pPagina0 = new PagWeb(0,"reddit",l);
 		PagWeb pPagina25 = new PagWeb(25,"xkcd",l);
-
+		
 		pPagina2.anadirListaRef(l);
 		pPagina3.anadirListaRef(l);
 
@@ -226,7 +221,9 @@ public class Webs {
 		miArbol.addWeb(pPagina0);
 		miArbol.addWeb(pPagina25);
 		miArbol.addWeb(pPagina3);
-
+		miArbol.imprimirArbol();
+		
+		/*
 		// Pruebas quitar webs
 
 		miArbol.removeWeb(pPagina5);
@@ -269,6 +266,7 @@ public class Webs {
 		else{
 			System.out.println("Web no encontrada");
 		}
+		*/
 	}
-	*/
+	
 }
