@@ -1,4 +1,4 @@
-﻿package eda;
+package eda;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
