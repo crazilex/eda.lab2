@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package eda;
+=======
+﻿package segundaFase;
+>>>>>>> c5c073787db517911068adbf4819944e169a2846
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

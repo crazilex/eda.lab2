@@ -258,7 +258,7 @@ public class MainMenu {
 					String[] sp = linea.split(" +");
 
 					String word = sp[0];
-					Diccionario.getDiccionario().anadirPorLetra(word);
+					Diccionario.getDiccionario().anadirPalabra(word);
 
 				}
 				scan.close();
@@ -497,7 +497,7 @@ private void addWord() {
 
 		System.out.print("Introduzca la palabra clave que desea anadir para que el buscador la reconozca\n");
 		String word = miMenu.leer();
-		Diccionario.getDiccionario().anadirPorLetra(word);
+		Diccionario.getDiccionario().anadirPalabra(word);
 		System.out.println("Se a anadido la palabra clave al diccionario\n");
 		System.out.println("(Para que el buscador encuentre por esta nueva palabra clave tiene que cargar el indice de las paginas web. NOTA: Si carga las webs no tendran la lista de paginas enlazadas.)\n");
 	}

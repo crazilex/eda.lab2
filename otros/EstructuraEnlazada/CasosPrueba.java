@@ -20,7 +20,7 @@ public class CasosPrueba
 		ListaEnlazada<Persona> l1 = new ListaEnlazada();
 		l1.anadirInicio(p1);
 		l1.anadirInicio(p2);
-
+		l1.anadirInicio(p3);
 		l1.anadirInicio(p4);
 		l1.anadirInicio(p5);	
 		l1.imprimir();
@@ -29,12 +29,13 @@ public class CasosPrueba
 		ListaEnlazada<Persona> l2 = new ListaEnlazada();
 		l2.anadirInicio(p1);
 		l2.anadirInicio(p2);
-		l2.anadirInicio(p3);
-		l2.anadirInicio(p4);
 		l2.anadirInicio(p5);	
 		l2.imprimir();
 		System.out.println("");
 	
 		l1.esSublista(l2);
+		
+		ListaEnlazada<Persona> l3 = l1.borrarSublista(l2);
+		l3.imprimir();
 	}
 }

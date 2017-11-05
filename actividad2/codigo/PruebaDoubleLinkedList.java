@@ -13,6 +13,15 @@ public class PruebaDoubleLinkedList {
 			System.out.println(num);
 		}
 	}
+	
+	public static void visualizarNodosOrdered(OrderedDoubleLinkedList<Integer> l) {
+		Iterator<Integer> it = l.iterator();
+		System.out.println();
+		while (it.hasNext()) {
+			Integer num = it.next();
+			System.out.println(num);
+		}
+	}
 		
 	public static void main(String[] args)  {
 		
@@ -39,7 +48,9 @@ public class PruebaDoubleLinkedList {
 		System.out.println("7? " + l.find(7));
 		
 		
-		// CASOS DE PRUEBA NUESTROS
+		// CASOS DE PRUEBA NUESTROS //
+		
+		// CLASE UNORDERED DOUBLE LINKED LIST //
 		
 		UnorderedDoubleLinkedList<Integer> l2 = new UnorderedDoubleLinkedList<Integer>();
 		int data;
@@ -209,6 +220,52 @@ public class PruebaDoubleLinkedList {
 		data = l2.find(5);
 		System.out.println(data);
 		
-		visualizarNodos(l2);
+		// CLASE ORDERED DOUBLE LINKED LIST //
+		
+		OrderedDoubleLinkedList<Integer> l3 = new OrderedDoubleLinkedList<Integer>();
+		
+		// PRUEBAS add //
+		
+		// Anadir solo un elemento
+		l3.add(5);
+		
+		// Anadir dos elementos (segundo despues del primero)
+		l3.add(5);
+		l3.add(7);
+		
+		// Anadir dos elementos (segundo antes del primero)
+		l3.add(7);
+		l3.add(5);
+		
+		// Anadir dos elementos (iguales)
+		l3.add(5);
+		l3.add(5);
+		
+		// Anadir tres elementos (en orden)
+		l3.add(1);
+		l3.add(2);
+		l3.add(3);
+		
+		// Anadir tres elementos (en orden inverso)
+		l3.add(3);
+		l3.add(2);
+		l3.add(1);
+		
+		// Anadir tres elementos (en desorden)
+		l3.add(2);
+		l3.add(3);
+		l3.add(1);
+		
+		// Anadir tres elementos (siendo dos iguales)
+		l3.add(2);
+		l3.add(2);
+		l3.add(1);
+		
+		// Anadir tres elementos (siendo todos iguales)
+		l3.add(2);
+		l3.add(2);
+		l3.add(2);
+		
+		visualizarNodosOrdered(l3);
 	}
 }
