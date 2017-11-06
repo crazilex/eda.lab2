@@ -1,7 +1,11 @@
-# eda.proyectos
+# ESTRUCTURAS DE DATOS Y ALGORITMOS (EDA)
 
-LINK A LA MEMORIA:
+## LINK A LA MEMORIA
 
-BUGS:
+## BUGS
 
-DUDAS:
+...
+
+## DUDAS
+
+...
