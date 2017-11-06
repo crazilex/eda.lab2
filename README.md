@@ -6,7 +6,7 @@
 
 ### PRIMARIO
 
-- []item 1
+- [ ]item 1
 - [x] item 2
 
 ### SECUNDARIO
