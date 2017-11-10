@@ -6,12 +6,15 @@
 
 ### PRIMARIO
 
-- [ ] item 1
-- [x] item 2
+- Grafo
+  - [ ] HashMap<String, Integer> th
+  - [ ] String[] keys
+  - [ ] ArrayList<Integer>[] adjList
 
 ### SECUNDARIO
 
-...
+- [ ] camino: ArrayList<String> estanConectados(String a1, String a2)
+     
 
 ## BUGS
 
