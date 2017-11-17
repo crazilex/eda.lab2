@@ -15,7 +15,10 @@ public class Grafo
     public Grafo ( ListaWebs pLista ) 
     {
     	this.nombres = new HashMap<>();
-    	
+    	this.identificadores = new String[pLista.size()];
+	this.direcciones = new ArrayList<Integer>[plista.size()];
+	for ( int i = 0 , i < pLista.size() , i++ ) { this.direcciones[i] = new Arraylist<Integer>(); }
+	    
     	int i = 0; 
     	while (i != pLista.size() ) 
     	{
