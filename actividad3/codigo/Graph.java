@@ -17,10 +17,10 @@ public class Graph {
 		int tamanoArbol = webs.tamano();
 		int tamanoArray = tamanoArbol+1000;
 		PagWeb web;
-		
 		adjList = new ArrayList[tamanoArray]; //el array tiene espacio para todas las webs del arbol y otras 1.000 mas
 		
 		//Inicializar las el array de arraylist
+		//Inicializar los arraylist del array
 		for( int j=0; j < tamanoArray; j++ ){ 
 			adjList[j] = new ArrayList<Integer>(); 
 		}
@@ -35,7 +35,7 @@ public class Graph {
 			adjList[id] = web.getListaRef(); //anade en el array de referencias en la posicion segun el id de la web
 		}
 
-		// Paso 2: llenar “keys” wn un array
+		// Paso 2: llenar “keys” en un array
 		keys = new String[th.size()];
 		for (String k: th.keySet()) keys[th.get(k)] = k;
 
@@ -43,10 +43,9 @@ public class Graph {
 
 	public void print(){
 	   for (int i = 0; i < adjList.length; i++){
-		System.out.print("Element: " + i + " " + keys[i] + " --> ");
-		for (int k: adjList[i])  System.out.print(keys[k] + " ### ");
-
-		System.out.println();
+		   System.out.print("Element: " + i + " " + keys[i] + " --> ");
+		   for (int k: adjList[i])  System.out.print(keys[k] + " ### ");
+		   System.out.println();
 	   }
 	}
 	
@@ -83,13 +82,15 @@ public class Graph {
 		return enc;
 	}
 	
-	public int[] caminoConectado(String a1, String a2){
+	public LinkedList<Integer> caminoConectado(String a1, String a2){
 		//metodo que busca el camino y almacena los ids en un array
 		Queue<Integer> porExaminar = new LinkedList<Integer>();
-		int[] camino = new int[th.size()];
+		int[] conexiones = new int[th.size()];
+		LinkedList<Integer> camino = new LinkedList<Integer>();
 		int pos1 = th.get(a1);
 		int pos2 = th.get(a2);
 		int actual = pos1;
+		int anterior = actual;
 		boolean enc = false;
 		boolean[] examinados = new boolean[th.size()];
 		
@@ -102,6 +103,7 @@ public class Graph {
 				while(!enc && porExaminar.isEmpty()){
 					if (!examinados[actual]) {
 						actual = porExaminar.poll();
+						conexiones[actual] = anterior;
 						examinados[actual] = true;
 						if(actual == pos2) enc = true;	
 						else{
@@ -113,19 +115,38 @@ public class Graph {
 					else{
 						actual = porExaminar.poll();
 					}
+					anterior = actual;
 				}
 			}
 		}
-		//Meter en estan conectados
+		actual = pos1;
+		while(conexiones[actual] != pos2) {
+			camino.add(conexiones[actual]);
+			actual= conexiones[actual];
+		}
 		return camino;
 	}
 	
 	public ArrayList<String> estanConectadosOpcional(String a1, String a2){
 		//metodo opcional que dada la lista de ids del camino devuelve el nombre de las webs que conectan de a1 a a2
-		int[] enlacesID =  caminoConectado(a1, a2);
+		LinkedList<Integer> enlacesID =  caminoConectado(a1, a2);
 		ArrayList<String> enlacesDeWebs = new ArrayList<String>();
+		ListIterator<Integer> listIterator = enlacesID.listIterator();
 		
-		
+		while(listIterator.hasNext()) {
+			enlacesDeWebs.add(keys[enlacesID.poll()]);
+		}
 		return enlacesDeWebs;
 	}
+	
+	public void printCamino(String a1, String a2){
+		ArrayList<String> lista = new ArrayList<String>(); 
+		lista = estanConectadosOpcional(a1, a2);
+		ListIterator<String> listIterator = lista.listIterator();
+		while(listIterator.hasNext()) {
+			listIterator.next();
+			System.out.print(listIterator.next() + " --> ");
+		}
+	}
+
 }
