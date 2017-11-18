@@ -70,24 +70,19 @@ public class Graph {
 		boolean enc = false;
 		boolean[] examinados = new boolean[th.size()];
 
-            // TODO: REVISAR
+        // TODO: REVISAR
 		if(a1.equals(a2)) enc = true;			
 		else{
 			examinados[pos1] = true;
 			porExaminar.add(pos1);
 			while(!enc && !porExaminar.isEmpty()){
-				if (!examinados[actual]) {
-					actual = porExaminar.poll();
-					examinados[actual] = true;
-					if(actual == pos2) enc = true;	
-					else{
-						for (int i = 0; i<adjList[actual].size();i++){
-							porExaminar.add(adjList[actual].get(i));
-						}
-					}
-				}
+				actual = porExaminar.poll();
+				examinados[actual] = true;
+				if(actual == pos2) enc = true;	
 				else{
-					actual = porExaminar.poll();
+					for (int i = 0; i<adjList[actual].size();i++){
+						porExaminar.add(adjList[actual].get(i));
+					}
 				}
 			}
 		}
