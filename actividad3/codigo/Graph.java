@@ -1,8 +1,6 @@
 package eda;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class Graph {
 
@@ -17,8 +15,17 @@ public class Graph {
 		// Paso 1: llenar “th”
 
 		int tamanoArbol = webs.tamano();
+		int tamanoArray = tamanoArbol+1000;
 		PagWeb web;
-		adjList = new ArrayList<Integer>()[web.+1000]; //el array tiene espacio para todas las webs del arbol y otras 1.000 mas
+		
+		adjList = new ArrayList[tamanoArray]; //el array tiene espacio para todas las webs del arbol y otras 1.000 mas
+		
+		//Inicializar las el array de arraylist
+		for( int j=0; j < tamanoArray; j++ ){ 
+			adjList[j] = new ArrayList<Integer>(); 
+		}
+			
+
 		Iterator<PagWeb> it = webs.getIterador();
 		while (it.hasNext()){
 			web = it.next();
@@ -63,10 +70,11 @@ public class Graph {
 					if(actual == pos2) enc = true;	
 					else{
 						for (int i = 0; i<adjList[actual].size();i++){
-							porExaminar.add([actual].get(i));
+							porExaminar.add(adjList[actual].get(i));
 						}
 					}
 				}
 			}
 		return enc;
+	}
 }
