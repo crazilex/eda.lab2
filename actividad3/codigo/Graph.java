@@ -74,9 +74,10 @@ public class Graph {
 		if(a1.equals(a2)) enc = true;			
 		else{
 			porExaminar.add(pos1);
+			examinados[pos1] = false;
 			while(!enc && !porExaminar.isEmpty()){
+				actual = porExaminar.poll();
 				if (!examinados[actual]) {
-					actual = porExaminar.poll();
 					examinados[actual] = true;
 					if(actual == pos2) enc = true;	
 					else{
@@ -84,9 +85,6 @@ public class Graph {
 							porExaminar.add(adjList[actual].get(i));
 						}
 					}
-				}
-				else{
-					actual = porExaminar.poll();
 				}
 			}
 		}
@@ -101,7 +99,7 @@ public class Graph {
 		int pos1 = th.get(a1);
 		int pos2 = th.get(a2);
 		int actual = pos1;
-		int anterior = 0;
+		int anterior = actual;
 		boolean enc = false;
 		boolean[] examinados = new boolean[th.size()];
 		
@@ -110,30 +108,30 @@ public class Graph {
 			if(a1.equals(a2)) enc = true;			
 			else{
 				porExaminar.add(pos1);
-				while(!enc && porExaminar.isEmpty()){
+				examinados[pos1] = false;
+				while(!enc && !porExaminar.isEmpty()){
+					actual = porExaminar.poll();
 					if (!examinados[actual]) {
-						actual = porExaminar.poll();
+						//actual = porExaminar.poll();
 						conexiones[actual] = anterior;
-						examinados[actual] = true;
 						if(actual == pos2) enc = true;	
 						else{
 							for (int i = 0; i<adjList[actual].size();i++){
 								porExaminar.add(adjList[actual].get(i));
 							}
 						}
-					}
-					else{
-						actual = porExaminar.poll();
+						examinados[actual] = true;
 					}
 					anterior = actual;
+					
 				}
 			}
-		}
-		
-		actual = pos2;
-		while(conexiones[actual] != 0) {
-			camino.add(conexiones[actual]);
-			actual= conexiones[actual];
+			
+			while(conexiones[actual] != conexiones[pos1]) {
+				camino.add(conexiones[actual]);
+				actual= conexiones[actual];
+			}
+			camino.add(conexiones[pos1]);
 		}
 		return camino;
 	}
@@ -145,7 +143,7 @@ public class Graph {
 		ListIterator<Integer> listIterator = enlacesID.listIterator();
 		
 		while(listIterator.hasNext()) {
-			enlacesDeWebs.add(keys[enlacesID.poll()]);
+				enlacesDeWebs.add(keys[enlacesID.pollLast()]);
 		}
 		return enlacesDeWebs;
 	}
@@ -155,9 +153,11 @@ public class Graph {
 		lista = estanConectadosOpcional(a1, a2);
 		ListIterator<String> listIterator = lista.listIterator();
 		while(listIterator.hasNext()) {
-			listIterator.next();
-			System.out.print(listIterator.next() + " --> ");
+			String s = listIterator.next();
+			System.out.print(s);
+			if(listIterator.hasNext())System.out.print(" --> ");
 		}
+		System.out.println("");
 	}
 
 	//TODO: Falta la prueba random

@@ -197,6 +197,8 @@ public class MainMenu {
 		LinkedList<Integer> cam = new LinkedList<Integer>(); 
 		cam = grafo.caminoConectado(string1,string2);
 		System.out.println(cam);
+		System.out.println("Esto de arriba es una prueba para mi, debajo es lo importante del opcional");
+		grafo.printCamino(string1,string2);
 		System.out.println("Imprimira las conexiones, sino no imprimira nada.");
 
 		System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar la conexion.");
