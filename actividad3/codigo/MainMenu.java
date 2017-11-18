@@ -76,9 +76,11 @@ public class MainMenu {
 							"Devolver las paginas web enlazadas desde una web dada",
 							"Guardar la lista de webs en ficheros",
 							"Cargar datos desde un fichero (se añadira ordenado)",
-							"Salir"};
+							"Salir",
+							"Camino"
+							};
 
-		for(int i=0; i<7; i++){
+		for(int i=0; i<9; i++){
 			System.out.print(i+1);
 			System.out.println("- " + opciones[i]);
 		}
@@ -96,6 +98,7 @@ public class MainMenu {
 			String[] f = new String[] {"6","g","guardar","guardar lista","guardar la lista webs","guardar fichero","save"};
 			String[] g = new String[] {"7","c","cargar","load","cargar datos","cargardatos"};
 			String[] h = new String[] {"8","q","salir","exit","quit","escape","leave"};
+			String[] i = new String[] {"9","camino"};
 
 			//MODIFICAR
 			if(miMenu.comparar(a, opcionElegida)){
@@ -122,6 +125,9 @@ public class MainMenu {
 			else if(miMenu.comparar(h, opcionElegida)){
 				miMenu.salirApp();
 				salir = true;
+			}
+			else if(miMenu.comparar(i, opcionElegida)){
+				miMenu.estanConectadosOpcional();
 			}
 			else{
 				System.out.println("La opción escogida no es valida, comprueba que este bien escrito o se listo y utiliza los numeros\n");
@@ -175,6 +181,24 @@ public class MainMenu {
 		else {
 			System.out.println("Las dos webs introducidas no estan conectadas.");
 		}
+		System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar la conexion.");
+	}
+	
+	private void estanConectadosOpcional() {
+		
+		System.out.println("Introduzca la primera pagina web: ");
+		String string1 = miMenu.leer();
+		System.out.println("Introduzca la segunda pagina web: ");
+		String string2 = miMenu.leer();
+		StopWatch timer = new StopWatch();
+		Webs webs = Webs.getWebs();
+		Graph grafo = Graph.getGraph();
+		grafo.crearGrafo(webs);
+		LinkedList<Integer> cam = new LinkedList<Integer>(); 
+		cam = grafo.caminoConectado(string1,string2);
+		System.out.println(cam);
+		System.out.println("Imprimira las conexiones, sino no imprimira nada.");
+
 		System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar la conexion.");
 	}
 	

@@ -101,7 +101,7 @@ public class Graph {
 		int pos1 = th.get(a1);
 		int pos2 = th.get(a2);
 		int actual = pos1;
-		int anterior = actual;
+		int anterior = 0;
 		boolean enc = false;
 		boolean[] examinados = new boolean[th.size()];
 		
@@ -129,8 +129,9 @@ public class Graph {
 				}
 			}
 		}
-		actual = pos1;
-		while(conexiones[actual] != pos2) {
+		
+		actual = pos2;
+		while(conexiones[actual] != 0) {
 			camino.add(conexiones[actual]);
 			actual= conexiones[actual];
 		}
