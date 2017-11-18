@@ -75,7 +75,7 @@ public class Graph {
 		else{
 			examinados[pos1] = true;
 			porExaminar.add(pos1);
-			while(!enc && porExaminar.isEmpty()){
+			while(!enc && !porExaminar.isEmpty()){
 				if (!examinados[actual]) {
 					actual = porExaminar.poll();
 					examinados[actual] = true;
