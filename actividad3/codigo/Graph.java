@@ -25,7 +25,6 @@ public class Graph {
 			adjList[j] = new ArrayList<Integer>(); 
 		}
 			
-
 		Iterator<PagWeb> it = webs.getIterador();
 		while (it.hasNext()){
 			web = it.next();
@@ -56,16 +55,18 @@ public class Graph {
 		
 		int pos1 = th.get(a1);
 		int pos2 = th.get(a2);
+		int actual = pos1;
 		boolean enc = false;
 		boolean[] examinados = new boolean[th.size()];
 
-            // COMPLETAR CÓDIGO
-			if(a1.equals(a2)) enc = true;			
-			else{
-				examinados[pos1] = true;
-				porExaminar.add(pos1);
-				while(!enc && porExaminar.isEmpty()){
-					int actual = porExaminar.poll();
+            // TODO: REVISAR
+		if(a1.equals(a2)) enc = true;			
+		else{
+			examinados[pos1] = true;
+			porExaminar.add(pos1);
+			while(!enc && porExaminar.isEmpty()){
+				if (!examinados[actual]) {
+					actual = porExaminar.poll();
 					examinados[actual] = true;
 					if(actual == pos2) enc = true;	
 					else{
@@ -74,7 +75,57 @@ public class Graph {
 						}
 					}
 				}
+				else{
+					actual = porExaminar.poll();
+				}
 			}
+		}
 		return enc;
+	}
+	
+	public int[] caminoConectado(String a1, String a2){
+		//metodo que busca el camino y almacena los ids en un array
+		Queue<Integer> porExaminar = new LinkedList<Integer>();
+		int[] camino = new int[th.size()];
+		int pos1 = th.get(a1);
+		int pos2 = th.get(a2);
+		int actual = pos1;
+		boolean enc = false;
+		boolean[] examinados = new boolean[th.size()];
+		
+        // TODO: COMPLETAR
+		if (estanConectados(a1, a2)) {
+			if(a1.equals(a2)) enc = true;			
+			else{
+				examinados[pos1] = true;
+				porExaminar.add(pos1);
+				while(!enc && porExaminar.isEmpty()){
+					if (!examinados[actual]) {
+						actual = porExaminar.poll();
+						examinados[actual] = true;
+						if(actual == pos2) enc = true;	
+						else{
+							for (int i = 0; i<adjList[actual].size();i++){
+								porExaminar.add(adjList[actual].get(i));
+							}
+						}
+					}
+					else{
+						actual = porExaminar.poll();
+					}
+				}
+			}
+		}
+		//Meter en estan conectados
+		return camino;
+	}
+	
+	public ArrayList<String> estanConectadosOpcional(String a1, String a2){
+		//metodo opcional que dada la lista de ids del camino devuelve el nombre de las webs que conectan de a1 a a2
+		int[] enlacesID =  caminoConectado(a1, a2);
+		ArrayList<String> enlacesDeWebs = new ArrayList<String>();
+		
+		
+		return enlacesDeWebs;
 	}
 }
