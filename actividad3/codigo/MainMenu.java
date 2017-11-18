@@ -70,8 +70,9 @@ public class MainMenu {
 	public void imprimirMenu(){
 		System.out.print("Elija una opcion:\n");
 		String[] opciones = {"Buscar una pagina web",
+							"Buscar conexion entre dos webs",
 							"Añadir nuevo elemento (web o palabra clave)",
-							"Obterner la lista de webs ordenada (Predeterminado alfabeticamente)",
+							"Obtener la lista de webs ordenada (predeterminado alfabeticamente)",
 							"Devolver las paginas web enlazadas desde una web dada",
 							"Guardar la lista de webs en ficheros",
 							"Cargar datos desde un fichero (se añadira ordenado)",
@@ -88,33 +89,37 @@ public class MainMenu {
 		while (!salir){
 			String opcionElegida = miMenu.leer();
 			String[] a = new String[] {"1","b","buscar","buscar pagina","buscar pagina web"};
-			String[] b = new String[] {"2","a","añadir","anadir","cargar nuevo elemento","añadir nuevo elemento"};
-			String[] c = new String[] {"3","o","Obtener","webs","lista ordenada","obtener la lista de webs ordenada"};
-			String[] d = new String[] {"4","d","Devolver","devolver las paginas","lista webs","Devolver las paginas web enlazadas desde una web dada"};
-			String[] e = new String[] {"5","g","guardar","guardar lista","guardar la lista webs","guardar fichero","save"};
-			String[] f = new String[] {"6","c","cargar","load","cargar datos","cargardatos"};
-			String[] g = new String[] {"7","q","salir","exit","quit","escape","leave"};
+			String[] b = new String[] {"2","conexion"};
+			String[] c = new String[] {"3","a","añadir","anadir","cargar nuevo elemento","añadir nuevo elemento"};
+			String[] d = new String[] {"4","o","Obtener","webs","lista ordenada","obtener la lista de webs ordenada"};
+			String[] e = new String[] {"5","d","Devolver","devolver las paginas","lista webs","Devolver las paginas web enlazadas desde una web dada"};
+			String[] f = new String[] {"6","g","guardar","guardar lista","guardar la lista webs","guardar fichero","save"};
+			String[] g = new String[] {"7","c","cargar","load","cargar datos","cargardatos"};
+			String[] h = new String[] {"8","q","salir","exit","quit","escape","leave"};
 
 			//MODIFICAR
 			if(miMenu.comparar(a, opcionElegida)){
 				miMenu.buscarPagWeb();
 			}
 			else if(miMenu.comparar(b, opcionElegida)){
-				miMenu.addElemento();
+				miMenu.estanConectados();
 			}
 			else if(miMenu.comparar(c, opcionElegida)){
-				miMenu.obtenerWebs();
+				miMenu.addElemento();
 			}
 			else if(miMenu.comparar(d, opcionElegida)){
-				miMenu.pagWebReferenciadas();
+				miMenu.obtenerWebs();
 			}
 			else if(miMenu.comparar(e, opcionElegida)){
-				miMenu.guardarWebsEnFichero();
+				miMenu.pagWebReferenciadas();
 			}
 			else if(miMenu.comparar(f, opcionElegida)){
-				miMenu.cargarDeFichero(false);
+				miMenu.guardarWebsEnFichero();
 			}
 			else if(miMenu.comparar(g, opcionElegida)){
+				miMenu.cargarDeFichero(false);
+			}
+			else if(miMenu.comparar(h, opcionElegida)){
 				miMenu.salirApp();
 				salir = true;
 			}
@@ -138,7 +143,7 @@ public class MainMenu {
 			try{
 				PagWeb pagina = Webs.getWebs().encontrarWeb(strings);
 				pagina.printIdName();
-				System.out.print("   Las paginas referenciadas son: ");
+				System.out.print("	Las paginas referenciadas son: ");
 				System.out.println(Webs.getWebs().devolverWebsReferenciadas(pagina).toString());
 
 			}catch(NullPointerException e){
@@ -153,6 +158,26 @@ public class MainMenu {
 		System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar.");
 	}
 
+	private void estanConectados() {
+		
+		System.out.println("Introduzca la primera pagina web: ");
+		String string1 = miMenu.leer();
+		System.out.println("Introduzca la segunda pagina web: ");
+		String string2 = miMenu.leer();
+		StopWatch timer = new StopWatch();
+		Webs webs = Webs.getWebs();
+		Graph grafo = Graph.getGraph();
+		grafo.crearGrafo(webs);
+		boolean conexion = grafo.estanConectados(string1,string2);
+		if (conexion) {
+			System.out.println("Las dos webs introducidas si estan conectadas.");
+		}
+		else {
+			System.out.println("Las dos webs introducidas no estan conectadas.");
+		}
+		System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar la conexion.");
+	}
+	
 	private void cargarDeFichero(boolean cargarTodo) throws FileNotFoundException {
 		boolean cIndex=false, cLinks=false, cWords=false;
 		boolean ok = false;
@@ -215,7 +240,7 @@ public class MainMenu {
 
 			String index=null, links=null, words=null;
 			if(cargarTodo||cIndex){
-				System.out.println("NOTA:  Escribir el nombre completo con la extension (Ej:'.txt')");
+				System.out.println("NOTA: Escribir el nombre completo con la extension (Ej:'.txt')");
 				System.out.print("¿Nombre del fichero de las paginas con su indice? (por defecto 'index')");
 				index = miMenu.leer();
 				if (index == null || index.isEmpty()){
@@ -238,7 +263,6 @@ public class MainMenu {
 					words = "words.txt";
 				}
 				System.out.println("El nombre es: "+ words+"\n");
-
 				System.out.println("Cargando archivos...");
 			}
 
@@ -492,8 +516,7 @@ public class MainMenu {
 		}
 	}
 
-
-private void addWord() {
+	private void addWord() {
 
 		System.out.print("Introduzca la palabra clave que desea anadir para que el buscador la reconozca\n");
 		String word = miMenu.leer();
@@ -502,8 +525,8 @@ private void addWord() {
 		System.out.println("(Para que el buscador encuentre por esta nueva palabra clave tiene que cargar el indice de las paginas web. NOTA: Si carga las webs no tendran la lista de paginas enlazadas.)\n");
 	}
 
-@SuppressWarnings("null")
-private void addPagWeb() {
+	@SuppressWarnings("null")
+	private void addPagWeb() {
 
 		ArrayList<Integer> refs = new ArrayList<Integer>();  ;
 		System.out.print("¿Cual es el nombre de la nueva pagina que va a ser anadida?\n");
@@ -533,7 +556,8 @@ private void addPagWeb() {
 		System.out.println("Se ha anadido la pagina web a la base de datos (arbol))\n");
 	}
 
-//NO TOCAR MAS ABAJO
+	//NO TOCAR MAS ABAJO
+	
 	private void salirApp(){
 		scan.close();
 		System.out.println("Hasta la próxima gracias por utilizar nuestro buscador");
