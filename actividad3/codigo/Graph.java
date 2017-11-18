@@ -7,6 +7,18 @@ public class Graph {
 	HashMap<String, Integer> th;
 	String[] keys;
 	ArrayList<Integer>[] adjList;
+	private static Graph miGraph = null;
+
+	private Graph(){
+		this.th = new HashMap<String, Integer>();
+	}
+	
+	public static Graph getGraph() {
+		if(miGraph == null) {
+			miGraph = new Graph();
+		}
+		return miGraph;
+	}
 
 	public void crearGrafo(Webs webs){
 		// Post: crea el grafo desde la lista de webs
