@@ -161,4 +161,26 @@ public class Graph {
 		}
 	}
 
+	//TODO: Falta la prueba random
+	/*	PSEUDOCODIGO
+    import java.util.Random;
+	Random rand = new Random();
+	int  n = rand.nextInt(50) + 1;
+
+
+    int probar (int nPruebas)\bar{
+    	post: el resultado es el tiempo(ms)
+        
+        int t = tactual;
+        int cont = 0;
+        
+        while (cont<n){
+        	v1 = naleatorio(Max);
+            v2 = naleatorio(Max);
+            if v1 != v2 {
+            	conectados(v1,v2)
+                cont++;
+        }
+    }
+    */
 }
