@@ -4,20 +4,22 @@
 
 ## A REALIZAR
 
+- Revisar casos extremos, en general parece que funciona
+
 ### PRIMARIO
 
-- [ ] void : crearGrafo(ListaWebss lista)
-- [ ] boolean : estanConectados(String a1, String a2)
+- [X] void : crearGrafo(ListaWebss lista)
+- [X] boolean : estanConectados(String a1, String a2)
 
 ### SECUNDARIO
 
-- [ ] camino: ArrayList<String> estanConectados(String a1, String a2)
-     
+- [X] camino: ArrayList<String> estanConectados(String a1, String a2)
+- no permitir en el menu que presionen enter sin meter nada que peta para estas pruebas porque no se ha restringido la opcion
 
 ## BUGS
-
+- Que yo sepa ninguno (Alex)
 ...
 
 ## DUDAS
 
-- No es posible crear "adjList = new ArrayList<Integer>()[tamanoArbol+1000];" porque la clase array no admite tener ArrayList (The type of the expression must be an array type but it resolved to ArrayList<Integer>)
+- 
