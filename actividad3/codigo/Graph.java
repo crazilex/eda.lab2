@@ -194,6 +194,7 @@ public class Graph {
         
         while (cont<nVeces){
         	conectado = false;
+        	StopWatch timer2 = new StopWatch();
         	int  n1 = rand.nextInt(indMAX) + 1;
         	int  n2 = rand.nextInt(indMAX) + 1;
             if (n1 != n2) {
@@ -202,7 +203,7 @@ public class Graph {
             	conectado = estanConectados(v1,v2);
             	
             	 //PARA PRUEBAS
-            	System.out.print(n1 +"-"+v1+", "+ n2 +"-"+v2);
+            	System.out.print("ID: "+n1 +" URL: "+v1+", "+"ID: "+n2+" URL: "+v2);
         		if (conectado) {
         			System.out.println(" estan conectadas.");
         		}
@@ -212,8 +213,9 @@ public class Graph {
         		
                 cont++;
             }
-            System.out.println("Ha tardado en analizar la conexion"+timer.elapsedTime()+"s\n");
+            System.out.println("Ha tardado en analizar la conexion "+timer2.elapsedTime()+"s\n");
         }
+        System.out.println("Resultado: ");
         System.out.println("Ha tardado en analizar la conexion de " +cont+ " webs: "+(timer.elapsedTime())+"s\n");
         tTardado = (timer.elapsedTime())/nVeces;
         return tTardado;

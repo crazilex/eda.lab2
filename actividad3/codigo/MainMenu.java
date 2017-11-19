@@ -176,7 +176,7 @@ public class MainMenu {
 		Graph grafo = Graph.getGraph();
 		grafo.crearGrafo(Webs.getWebs());
 		double tiempoMedio = grafo.probar( nVeces,  indMAX);
-		System.out.println("Ha tardado: " + tiempoMedio +"s, para "+ nVeces+ " conexiones de webs");
+		System.out.println("Ha tardado para cada web un tiempo medio de : " + tiempoMedio +"s, al analizar "+ nVeces+ " conexiones de webs");
 		
 		//PRUEBAS DE UNO EN UNO MANUAL
 		/*
