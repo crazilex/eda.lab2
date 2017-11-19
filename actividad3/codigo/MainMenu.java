@@ -165,7 +165,21 @@ public class MainMenu {
 	}
 
 	private void estanConectados() {
+		//PRUEBA AUTOMATICA DE VARIAS WEBS
+		System.out.println("Introduzca el numero de conexiones que desea buscar: ");
+		String string1 = miMenu.leer();
+		int nVeces = Integer.parseInt(string1);
+		System.out.println("Introduzca un indice menor que el maximo numero de webs : (menor o igual que " + Webs.getWebs().getLastID()+")");
+		String string2 = miMenu.leer();
+		int indMAX = Integer.parseInt(string2);
+				
+		Graph grafo = Graph.getGraph();
+		grafo.crearGrafo(Webs.getWebs());
+		double tiempoMedio = grafo.probar( nVeces,  indMAX);
+		System.out.println("Ha tardado: " + tiempoMedio +"s, para "+ nVeces+ " conexiones de webs");
 		
+		//PRUEBAS DE UNO EN UNO MANUAL
+		/*
 		System.out.println("Introduzca la primera pagina web: ");
 		String string1 = miMenu.leer();
 		System.out.println("Introduzca la segunda pagina web: ");
@@ -182,6 +196,7 @@ public class MainMenu {
 			System.out.println("Las dos webs introducidas no estan conectadas.");
 		}
 		System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar la conexion.");
+		*/
 	}
 	
 	private void estanConectadosOpcional() {

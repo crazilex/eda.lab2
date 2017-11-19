@@ -162,7 +162,6 @@ public class Graph {
 
 	//TODO: Falta la prueba random
 	/*	PSEUDOCODIGO
-    import java.util.Random;
 	Random rand = new Random();
 	int  n = rand.nextInt(50) + 1;
 
@@ -182,4 +181,42 @@ public class Graph {
         }
     }
     */
+
+
+	public double probar(int nVeces, int indMAX) {
+    	//post: el resultado es el tiempo(ms)
+		Random rand = new Random();
+        int cont = 0;
+        double tTardado = 0;
+        boolean conectado;
+        
+        StopWatch timer = new StopWatch();
+        
+        while (cont<nVeces){
+        	conectado = false;
+        	int  n1 = rand.nextInt(indMAX) + 1;
+        	int  n2 = rand.nextInt(indMAX) + 1;
+            if (n1 != n2) {
+            	String v1 = keys[n1];
+            	String v2 = keys[n2];
+            	conectado = estanConectados(v1,v2);
+            	
+            	 //PARA PRUEBAS
+            	System.out.print(n1 +"-"+v1+", "+ n2 +"-"+v2);
+        		if (conectado) {
+        			System.out.println(" estan conectadas.");
+        		}
+        		else {
+        			System.out.println(" NO estan conectadas.");
+        		}
+        		
+                cont++;
+            }
+            System.out.println("Ha tardado en analizar la conexion"+timer.elapsedTime()+"s\n");
+        }
+        System.out.println("Ha tardado en analizar la conexion de " +cont+ " webs: "+(timer.elapsedTime())+"s\n");
+        tTardado = (timer.elapsedTime())/nVeces;
+        return tTardado;
+	}
+	
 }
