@@ -203,20 +203,20 @@ public class Graph {
             	conectado = estanConectados(v1,v2);
             	
             	 //PARA PRUEBAS
-            	System.out.print("ID: "+n1 +" URL: "+v1+", "+"ID: "+n2+" URL: "+v2);
+            	System.out.println("ID: "+n1 +" URL: "+v1+", "+"ID: "+n2+" URL: "+v2);
         		if (conectado) {
-        			System.out.println(" estan conectadas.");
+        			System.out.print("SI estan conectadas.");
         		}
         		else {
-        			System.out.println(" NO estan conectadas.");
+        			System.out.print("NO estan conectadas.");
         		}
         		
                 cont++;
             }
-            System.out.println("Ha tardado en analizar la conexion "+timer2.elapsedTime()+"s\n");
+            System.out.println(" ha tardado en analizar la conexion "+timer2.elapsedTime()+"s\n");
         }
         System.out.println("Resultado: ");
-        System.out.println("Ha tardado en analizar la conexion de " +cont+ " webs: "+(timer.elapsedTime())+"s\n");
+        System.out.println("Ha tardado en analizar la conexion de " +cont+ " webs: "+(timer.elapsedTime())+"s");
         tTardado = (timer.elapsedTime())/nVeces;
         return tTardado;
 	}
