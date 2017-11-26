@@ -24,7 +24,7 @@ public class Graph {
 		// Post: crea el grafo desde la lista de webs
 		//       Los nodos son nombres de webs
 
-		// Paso 1: llenar th
+		// Paso 1: llenar 'th'
 
 		int tamanoArbol = webs.tamano();
 		int tamanoArray = tamanoArbol+1000;
@@ -43,11 +43,11 @@ public class Graph {
 			String nombre = web.getNombre();
 			int id = web.getId();
 			th.put(nombre,id);
-			// Paso 3: llenar adjList
+			// Paso 3: llenar “adjList”
 			adjList[id] = web.getListaRef(); //anade en el array de referencias en la posicion segun el id de la web
 		}
 
-		// Paso 2: llenar keys en un array
+		// Paso 2: llenar “keys” en un array
 		keys = new String[th.size()];
 		for (String k: th.keySet()) keys[th.get(k)] = k;
 
