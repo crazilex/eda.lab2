@@ -1,24 +1,22 @@
 # ESTRUCTURAS DE DATOS Y ALGORITMOS (EDA)
 
-**MEMORIA (ACTIVIDAD 3):** https://www.overleaf.com/12119250nfwmpyyfbgch
+**MEMORIA (ACTIVIDAD 4):**
 
 ## A REALIZAR
 
-- Revisar casos extremos, en general parece que funciona
+- Todo
 
 ### PRIMARIO
 
-- [X] void : crearGrafo(ListaWebss lista)
-- [X] boolean : estanConectados(String a1, String a2)
+- [ ] HashMap<String,Double> : pageRank()
+- [ ] ArrayList<String> buscar(String palabraClave, HashMap<String,Double> pageRanks)
 
 ### SECUNDARIO
 
-- [X] camino: ArrayList<String> estanConectados(String a1, String a2)
-- no permitir en el menu que presionen enter sin meter nada que peta para estas pruebas porque no se ha restringido la opcion
+- [ ] ArrayList<String> buscar(String palabraClave1, String palabraClave2, HashMap<String,Double> pageRanks)
 
 ## BUGS
-- Que yo sepa ninguno (Alex)
-...
+- pageRank() está hecho pero no funciona
 
 ## DUDAS
 
