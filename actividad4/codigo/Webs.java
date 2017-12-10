@@ -1,9 +1,7 @@
 package eda;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Webs {
 
@@ -65,7 +63,54 @@ public class Webs {
 	    }
 	}
 
-	public
+	public HashMap<String, Double> pageRank(){
+		//pre: -
+		//post: las paginas estaran ordenadas segun el algoritmo PageRank
+		//coste: O(n²) siendo n el numero de webs (se ha ignorado el numero de iteraciones por ser pequeno)
+
+		//INICIALIZACION
+		HashMap<String, Double> pageRank = new HashMap<String, Double>();
+
+		int tamano = this.arbol.size();
+		double[] pageR = new double[tamano]; //guardaremos los valores de pr en un array asociado por id
+		for (int n = 0; n < tamano; n++){
+			pageR[n] = (1.0/tamano);
+		}
+		
+		//ITERACIONES
+		int iteraciones = 4;
+		Double dumpingFact = 0.85;
+		int k = 0;
+		while (k <= iteraciones){
+			for (int i = 0; i < tamano; i++){ //loop pagerank para todas webs -- O(n²)
+				Double sumatorio = 0.0; //representa el sumatorio PR(i)/C(i)
+				for (int j = 0; j < tamano; j++){ //loop sumatorio -- O(n)
+					Double pri = 0.0; //representa PR(i)
+					double ci = (double) encontrarWebPorID(j).getNum(); //representa C(i)
+					Double resultado = 0.0; //representa PR(i)/C(i)
+					if (encontrarWebPorID(j).esta(i)){
+						pri = pageR[j];
+						resultado = pri/ci;
+						sumatorio = sumatorio + resultado;
+					}
+				}
+				pageR[i] = ((1-dumpingFact)/tamano)+(dumpingFact*sumatorio);
+				if (k == tamano){ //meter valores en el hashmap
+					pageRank.put(encontrarWebPorID(i).getNombre(), pageR[i]);
+				}
+			}
+			k++;
+		}
+		return pageRank;
+	}
+
+	public void imprimirHash(){
+		HashMap<String, Double> pageRank = pageRank();
+	    for(String key: pageRank.keySet()){
+	        System.out.println(key + " - " + pageRank.get(key));
+	    }
+
+	}
 
 	public PagWeb encontrarWeb(String pNombre) {
 		//pre: -
@@ -98,12 +143,6 @@ public class Webs {
 		}
 		if(!enc){ web = null; }
 		return web;
-	}
-
-	public HashMap<String, Double> pageRank(){
-
-		HashMap<String, Double> pageRank = new 
-
 	}
 
 	private PagWeb buscarWebReferenciadas(PagWeb pPagina, int pPos){
@@ -217,6 +256,35 @@ public class Webs {
 	public static void main(String[] args) {
 
 		Webs miArbol = new Webs();
+		
+		ArrayList<Integer> lA = new ArrayList<Integer>();
+		ArrayList<Integer> lB = new ArrayList<Integer>();
+		lB.add(0); lB.add(2);
+		ArrayList<Integer> lC = new ArrayList<Integer>();
+		lC.add(0);
+		ArrayList<Integer> lD = new ArrayList<Integer>();
+		lD.add(0); lD.add(1); lD.add(2);
+		PagWeb pPaginaA = new PagWeb(0,"A",lA);
+		PagWeb pPaginaB = new PagWeb(1,"B",lB);
+		PagWeb pPaginaC = new PagWeb(2,"C",lC);
+		PagWeb pPaginaD = new PagWeb(3,"D",lD);
+		pPaginaA.anadirListaRef(lA);
+		pPaginaB.anadirListaRef(lB);
+		pPaginaC.anadirListaRef(lC);
+		pPaginaD.anadirListaRef(lD);
+		miArbol.addWeb(pPaginaA);
+		miArbol.addWeb(pPaginaB);
+		miArbol.addWeb(pPaginaC);
+		miArbol.addWeb(pPaginaD);
+
+		//HashMap<String, Double> prueba = pageRank();
+		HashMap<String, Double> pageRank = miArbol.pageRank();
+	    for(String key: pageRank.keySet()){
+	        System.out.println(key + " - " + pageRank.get(key));
+	    }
+
+		/*
+		Webs miArbol = new Webs();
 
 		// Pruebas anadir webs
 
@@ -239,7 +307,6 @@ public class Webs {
 		miArbol.addWeb(pPagina3);
 		miArbol.imprimirArbol();
 
-		/*
 		// Pruebas quitar webs
 
 		miArbol.removeWeb(pPagina5);
