@@ -1,6 +1,9 @@
-package eda;
+package cuartaFase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.TreeSet;
 
 //import java.util.Map;
 //import java.util.Set;
@@ -98,6 +101,27 @@ public class Diccionario {
 			System.out.println("No se han encontrado ninguna coincidencia");
 		}
 	}
+	
+	public ArrayList<String> buscar(String palabraClave, HashMap<String,Double> pageRanks){
+		TreeSet <WebPeso> arbol = new TreeSet<WebPeso>();
+		UnorderedDoubleLinkedList<String> paginas = this.palabras.get(palabraClave);
+		Iterator<String> it = paginas.iterator();
+		while (it.hasNext()) {
+			String pag = it.next();
+			double pesoPag = pageRanks.get(pag);
+			WebPeso act = new WebPeso(pag, pesoPag);
+			arbol.add(act);
+		}
+		
+		ArrayList<String> pagFinal = new ArrayList<String>();
+		Iterator<WebPeso> itArbol = arbol.iterator();
+		while (itArbol.hasNext()) {
+			WebPeso web = itArbol.next();
+			pagFinal.add(web.nombre);
+		}
+		
+		return pagFinal;
+	}
 
 
 
@@ -112,5 +136,41 @@ public class Diccionario {
 	//Vacia el hashmap.
 	public void reset(){
 		this.palabras.clear();
+	}
+	
+	private class WebPeso implements Comparable{
+		//Atributos
+		public String nombre;
+		public double peso;
+		
+		//Constructora
+		private WebPeso(String pNombre, double pPeso){
+			this.nombre = pNombre;
+			this.peso = pPeso;
+		}
+		
+		@Override
+	    public int compareTo(Object obj) {
+	        if (obj instanceof WebPeso)
+	        	return comparar(this, ((WebPeso) obj));
+	        return 0;
+		}
+		
+		public Integer comparar(WebPeso web1, WebPeso web2){
+			//creamos nuevas variable string
+			double pesoWeb1 = web1.peso;
+			double pesoWeb2 = web2.peso;
+
+			//las comparamos
+			int resultado = 0;
+			if (web1.nombre.equals(web2.nombre)) resultado = 0;
+			else if (pesoWeb1 < pesoWeb2) resultado = 1;
+			else if (pesoWeb1 > pesoWeb2) resultado = (-1);
+			else if (pesoWeb1 == pesoWeb2) resultado = (-1);
+			
+			return resultado;
+
+		}
+		
 	}
 }
