@@ -77,12 +77,15 @@ public class Webs {
 		for (int n = 0; n < tamano; n++){
 			pageR[n] = (1.0/tamano);
 		}
-		
+
 		//ITERACIONES
-		int iteraciones = 1;
+		boolean fin = false;
+		Double comparacion1 = 0.0;
+		Double comparacion2 = 0.0;
 		Double dumpingFact = 0.85;
-		int k = 0;
-		while (k < iteraciones){
+		int iteraciones = 0;  //para saber cuantas veces itera
+
+		while (!fin){
 			for (int i = 0; i < tamano; i++){ //loop pagerank para todas webs -- O(n²)
 				Double sumatorio = 0.0; //representa el sumatorio PR(i)/C(i)
 				for (int j = 0; j < tamano; j++){ //loop sumatorio -- O(n)
@@ -98,9 +101,16 @@ public class Webs {
 				pageRF[i] = ((1-dumpingFact)/tamano)+(dumpingFact*sumatorio);
 			}
 			for (int t = 0; t < pageR.length; t++) { //actualizar array con nuevos valores -- O(n)
+				comparacion1 = comparacion1 + pageR[t];
+				comparacion2 = comparacion2 + pageRF[t];
 				pageR[t] = pageRF[t];
 			}
-			k++;
+			if ( ((comparacion2-comparacion1) > -0.0001) && ((comparacion2-comparacion1) < 0.0001) )
+				fin = true;
+			comparacion1 = 0.0;
+			comparacion2 = 0.0;
+			iteraciones++;
+			//System.out.println(iteraciones);
 		}
 		for (int b = 0; b < tamano; b++){ //meter valores en el hashmap -- O(n)
 			pageRank.put(encontrarWebPorID(b).getNombre(), pageR[b]);
@@ -260,8 +270,8 @@ public class Webs {
 	public static void main(String[] args) {
 
 		Webs miArbol = new Webs();
-		
-		
+
+
 		//GRAFO 1
 		ArrayList<Integer> lA = new ArrayList<Integer>();
 		ArrayList<Integer> lB = new ArrayList<Integer>();
@@ -282,8 +292,8 @@ public class Webs {
 		miArbol.addWeb(pPaginaB);
 		miArbol.addWeb(pPaginaC);
 		miArbol.addWeb(pPaginaD);
-		
-		
+
+
 		/*
 		//GRAFO 2
 		ArrayList<Integer> lA = new ArrayList<Integer>();
@@ -330,7 +340,7 @@ public class Webs {
 	    for(String key: pageRank.keySet()){
 	        System.out.println(key + " - " + pageRank.get(key));
 	    }
-	    
+
 		/*
 		Webs miArbol = new Webs();
 
