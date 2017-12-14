@@ -122,6 +122,50 @@ public class Diccionario {
 		
 		return pagFinal;
 	}
+	
+	public ArrayList<String> buscarOpcional(String palabraClave1, String palabraClave2, HashMap<String,Double> pageRanks){
+		TreeSet <WebPeso> arbol1 = new TreeSet<WebPeso>();
+		UnorderedDoubleLinkedList<String> paginas1 = this.palabras.get(palabraClave1);
+		Iterator<String> it1 = paginas1.iterator();
+		UnorderedDoubleLinkedList<String> paginas2 = this.palabras.get(palabraClave2);
+		Iterator<String> it2 = paginas2.iterator();
+		
+		while (it1.hasNext()) {
+			String pag = it1.next();
+			double pesoPag = pageRanks.get(pag);
+			WebPeso act = new WebPeso(pag, pesoPag);
+			arbol1.add(act);
+		}
+		
+		TreeSet <WebPeso> arbol2 = new TreeSet<WebPeso>();
+		
+		while (it2.hasNext()) {
+			String pag = it2.next();
+			double pesoPag = pageRanks.get(pag);
+			WebPeso act = new WebPeso(pag, pesoPag);
+			boolean added = arbol1.add(act);
+			if (!added) {
+				arbol2.add(act);
+				arbol1.remove(act);
+			}
+		}
+		
+		ArrayList<String> pagFinal = new ArrayList<String>();
+		Iterator<WebPeso> itArbol1 = arbol1.iterator();
+		Iterator<WebPeso> itArbol2 = arbol2.iterator();
+		
+		while (itArbol2.hasNext()) {
+			WebPeso web = itArbol2.next();
+			pagFinal.add(web.nombre);
+		}
+		
+		while (itArbol1.hasNext()) {
+			WebPeso web = itArbol1.next();
+			pagFinal.add(web.nombre);
+		}
+		
+		return pagFinal;
+	}
 
 
 
@@ -156,7 +200,7 @@ public class Diccionario {
 	        return 0;
 		}
 		
-		public Integer comparar(WebPeso web1, WebPeso web2){
+		private Integer comparar(WebPeso web1, WebPeso web2){
 			//creamos nuevas variable string
 			double pesoWeb1 = web1.peso;
 			double pesoWeb2 = web2.peso;
@@ -165,8 +209,8 @@ public class Diccionario {
 			int resultado = 0;
 			if (web1.nombre.equals(web2.nombre)) resultado = 0;
 			else if (pesoWeb1 < pesoWeb2) resultado = 1;
-			else if (pesoWeb1 > pesoWeb2) resultado = (-1);
-			else if (pesoWeb1 == pesoWeb2) resultado = (-1);
+			else resultado = (-1);
+			
 			
 			return resultado;
 

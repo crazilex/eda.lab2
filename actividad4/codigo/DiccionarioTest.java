@@ -67,14 +67,33 @@ public class DiccionarioTest {
 		Diccionario.getDiccionario().añadirWeb("Casa2.com");
 		Diccionario.getDiccionario().añadirWeb("Casa3.com");
 		Diccionario.getDiccionario().añadirWeb("Casa4.com");
+		Diccionario.getDiccionario().añadirWeb("Coche1.com");
+		Diccionario.getDiccionario().añadirWeb("Coche2.com");
+		Diccionario.getDiccionario().añadirWeb("Coche3.com");
+		Diccionario.getDiccionario().añadirWeb("Coche4.com");
+		Diccionario.getDiccionario().añadirWeb("CocheCasa1.com");
+		Diccionario.getDiccionario().añadirWeb("CocheCasa2.com");
+		Diccionario.getDiccionario().añadirWeb("CocheCasa3.com");
+		Diccionario.getDiccionario().añadirWeb("CocheCasa4.com");
 		
 		HashMap<String,Double> pageRank = new HashMap<String,Double>();
 		pageRank.put("Casa1.com", 0.05);
 		pageRank.put("Casa2.com", 0.55);
-		pageRank.put("Casa3.com", 0.20);
-		pageRank.put("Casa4.com", 0.20);
+		pageRank.put("Casa3.com", 0.2);
+		pageRank.put("Casa4.com", 0.2);
+		pageRank.put("Coche1.com", 0.7);
+		pageRank.put("Coche2.com", 0.55);
+		pageRank.put("Coche3.com", 0.2);
+		pageRank.put("Coche4.com", 0.5);
+		pageRank.put("CocheCasa1.com", 0.005);
+		pageRank.put("CocheCasa2.com", 0.15);
+		pageRank.put("CocheCasa3.com", 1.2);
+		pageRank.put("CocheCasa4.com", 0.005);
 		
-		ArrayList<String> l = Diccionario.getDiccionario().buscar("Casa", pageRank);
-		System.out.println(l);
+		ArrayList<String> l1 = Diccionario.getDiccionario().buscar("Casa", pageRank);
+		System.out.println(l1);
+		ArrayList<String> l2 = Diccionario.getDiccionario().buscarOpcional("Casa", "Coche", pageRank);
+		System.out.println(l2);
+		
 	}
 }
