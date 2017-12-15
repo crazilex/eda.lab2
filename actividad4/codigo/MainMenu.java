@@ -1,18 +1,19 @@
-package eda;
-
-import eda.StopWatch;
 import java.io.*;
 import java.util.*;
 
 
 public class MainMenu {
-
+	
+	public HashMap<String, Double> pageRank = new HashMap<String, Double>();
 
 	//Esto es lo que se ejecutara mientras este encendido
 	public static void main(String[] args) throws FileNotFoundException {
 
 		// "Empieza" el programa
 		MainMenu miMenu = MainMenu.getMenu();
+		Diccionario miDiccionario = Diccionario.getDiccionario();
+		Webs misWebs = Webs.getWebs();
+		
 		try{
 
 			miMenu.cargarDeFichero(true);
@@ -31,7 +32,11 @@ public class MainMenu {
 						Webs.websID.encontrarWebPorID(k).printList();
 					}
 			*/
-
+			System.out.println("Calculando PageRank... ");
+			StopWatch timer = new StopWatch();
+			miMenu.pageRank = Webs.getWebs().pageRank();
+			System.out.println("Ha tardado: "+timer.elapsedTime()+"s en hacer el PageRank.\n");
+			
 			miMenu.imprimirMenu();
 			miMenu.seleccionarMenu();
 
@@ -102,7 +107,7 @@ public class MainMenu {
 
 			//MODIFICAR
 			if(miMenu.comparar(a, opcionElegida)){
-				miMenu.buscarPagWeb();
+				miMenu.buscar();
 			}
 			else if(miMenu.comparar(b, opcionElegida)){
 				miMenu.estanConectados();
@@ -139,6 +144,23 @@ public class MainMenu {
 		}
 
 	}
+		private void buscar() {
+		System.out.println("Introduzca lo que quiera buscar (pagina web o palabras clave): ");
+		ArrayList lista = new ArrayList <String>();
+		String strings = miMenu.leer();
+		String[] sp = strings.split(" +");
+		StopWatch timer = new StopWatch();
+		try{
+			lista = Diccionario.getDiccionario().buscar(sp[0], pageRank);
+			System.out.print("	Las paginas relacionadas son: ");
+			System.out.println(lista);
+
+		}catch(NullPointerException e){
+			System.out.println("No se ha encontrado ninguna pagina.");
+		}
+		System.out.println("Ha tardado: "+timer.elapsedTime()+"s en encontrar.");
+	}
+	
 	private void buscarPagWeb() {
 		System.out.println("Introduzca lo que quiera buscar (pagina web o palabras clave): ");
 		String strings = miMenu.leer();
