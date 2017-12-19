@@ -4,16 +4,16 @@
 
 ## A REALIZAR
 
-- Todo
+- https://www.overleaf.com/12881002crzszmspmnmz
 
 ### PRIMARIO
 
-- [ ] HashMap<String,Double> : pageRank()
-- [ ] ArrayList<String> buscar(String palabraClave, HashMap<String,Double> pageRanks)
+- [X] HashMap<String,Double> : pageRank()
+- [X] ArrayList<String> buscar(String palabraClave, HashMap<String,Double> pageRanks)
 
 ### SECUNDARIO
 
-- [ ] ArrayList<String> buscar(String palabraClave1, String palabraClave2, HashMap<String,Double> pageRanks)
+- [X] ArrayList<String> buscar(String palabraClave1, String palabraClave2, HashMap<String,Double> pageRanks)
 
 ## BUGS
 - pageRank() está hecho pero no funciona
